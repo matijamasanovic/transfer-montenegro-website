@@ -1,0 +1,831 @@
+{
+  "nav": {
+    "home": "Početna",
+    "tours": "Ture",
+    "about": "O nama",
+    "contact": "Kontakt",
+    "bookRide": "Rezerviši vožnju"
+  },
+  "hero": {
+    "badge": "Ocjena 5.0 na Tripadvisor-u",
+    "title1": "Vaš partner za",
+    "title2": "sigurnu vožnju",
+    "subtitle": "Montenegro Transfer Group pruža udoban i siguran prevoz po pristupačnim cijenama. Započnite svoje putovanje na pravi način.",
+    "from": "Od",
+    "to": "Do",
+    "fromPlaceholder": "Polazna lokacija",
+    "toPlaceholder": "Odredište",
+    "book": "Rezerviši"
+  },
+  "bookingModal": {
+    "title": "Rezervišite vožnju",
+    "subtitle": "Popunite podatke u nekoliko koraka."
+  },
+  "booking": {
+    "stepRoute": "Ruta",
+    "stepData": "Podaci",
+    "stepConfirm": "Potvrda",
+    "oneWay": "Jedan smjer",
+    "return": "Povratna vožnja",
+    "from": "Polazna lokacija",
+    "to": "Odredište",
+    "selectDeparture": "Izaberite polazak",
+    "selectDestination": "Izaberite odredište",
+    "sameLocationError": "Polazak i odredište ne mogu biti isti.",
+    "date": "Datum",
+    "time": "Vrijeme",
+    "passengers": "Broj putnika",
+    "passengersUnit": "putnika",
+    "next": "Dalje",
+    "back": "Nazad",
+    "fullName": "Ime i prezime",
+    "yourName": "Vaše ime",
+    "email": "Email",
+    "phone": "Telefon",
+    "flightOptional": "Broj leta (opciono)",
+    "flightPlaceholder": "npr. JU 142",
+    "noteOptional": "Napomena (opciono)",
+    "notePlaceholder": "Dječije sjedište, dodatni prtljag...",
+    "review": "Pregled",
+    "reviewTitle": "Pregled rezervacije",
+    "routeLabel": "Relacija",
+    "typeLabel": "Tip",
+    "dateTimeLabel": "Datum i vrijeme",
+    "at": "u",
+    "passengersLabel": "Putnici",
+    "flightLabel": "Broj leta",
+    "contactLabel": "Kontakt",
+    "confirm": "Potvrdi rezervaciju",
+    "sending": "Slanje...",
+    "errorMsg": "Došlo je do greške. Pokušajte ponovo ili nas pozovite.",
+    "successTitle": "Zahtjev je poslat!",
+    "successMsg": "Hvala, {name}! Vaš zahtjev za transfer je primljen. Kontaktiraćemo vas u najkraćem roku radi potvrde."
+  },
+  "popularTours": {
+    "eyebrow": "Doživljaji",
+    "title": "Popularne ture",
+    "subtitle": "Nudimo raznovrsne ture po Crnoj Gori — od obale do planina.",
+    "allTours": "Sve ture"
+  },
+  "toursPage": {
+    "eyebrow": "Doživljaji",
+    "title": "Privatne ture po Crnoj Gori",
+    "subtitle": "Izaberite jednu od naših pažljivo osmišljenih tura sa privatnim vozačem i otkrijte najljepše krajeve zemlje vlastitim tempom."
+  },
+  "toursGrid": {
+    "from": "od",
+    "bookTour": "Rezerviši turu",
+    "tours": {
+      "ada-bojana": {
+        "title": "Ada Bojana",
+        "shortDescription": "Jedinstveno riječno ostrvo na jugu Crne Gore, raj za naturiste i ljubitelje prirode.",
+        "description": "Ada Bojana je trokutasto riječno ostrvo na ušću Bojane u Jadransko more. Poznata po divljim plažama, svježim ribljim restoranima i opuštenom ambijentu.",
+        "highlights": [
+          "Divlja plaža",
+          "Riblji restorani",
+          "Ušće Bojane",
+          "Prirodni rezervat"
+        ]
+      },
+      "andrijevica": {
+        "title": "Andrijevica",
+        "shortDescription": "Planinska varoš na ulazu u kanjon Lima, kapija prema Prokletijama.",
+        "description": "Andrijevica je mirna planinska varoš smještena uz rijeku Lim, poznata kao polazna tačka za izlete u Nacionalni park Prokletije.",
+        "highlights": [
+          "Kanjon Lima",
+          "Prokletije",
+          "Planinski pejzaži",
+          "Rijeka Lim"
+        ]
+      },
+      "banja-luka": {
+        "title": "Banja Luka",
+        "shortDescription": "Administrativni centar Republike Srpske sa tvrđavom Kastel i živopisnom čaršijom.",
+        "description": "Banja Luka je drugi najveći grad u Bosni i Hercegovini, smješten na obalama rijeke Vrbas. Posjetite tvrđavu Kastel i uživajte u rafting stazama.",
+        "highlights": [
+          "Tvrđava Kastel",
+          "Rafting na Vrbasu",
+          "Čaršija",
+          "Hram Hrista Spasitelja"
+        ]
+      },
+      "bar": {
+        "title": "Bar",
+        "shortDescription": "Najveća crnogorska luka sa ruševinama Starog Bara i maslinom starom dvije hiljade godina.",
+        "description": "Bar je dinamičan primorski grad poznat po svom starom jezgru, drevnoj maslinovoj šumi i živopisnoj luci.",
+        "highlights": ["Stari Bar", "Drevna maslina", "Luka Bar", "Tvrđava"]
+      },
+      "belgrade": {
+        "title": "Beograd",
+        "shortDescription": "Živi srpski metropolis na ušću Save i Dunava — Kalemegdan, Skadarlija i noćni život.",
+        "description": "Beograd je jedan od najstarijih gradova u Evropi, smješten na ušću Save u Dunav. Posjetite tvrđavu Kalemegdan i boémsku četvrt Skadarlija.",
+        "highlights": [
+          "Kalemegdan",
+          "Skadarlija",
+          "Ada Ciganlija",
+          "Knez Mihailova"
+        ]
+      },
+      "berane": {
+        "title": "Berane",
+        "shortDescription": "Grad na Limu okružen planinama, sa bogatom istorijom i manastirom Đurđevi Stupovi.",
+        "description": "Berane je grad u sjevernoj Crnoj Gori smješten u Beranskoj kotlini uz rijeku Lim. U blizini se nalazi manastir Đurđevi Stupovi.",
+        "highlights": [
+          "Manastir Đurđevi Stupovi",
+          "Rijeka Lim",
+          "Beransko polje",
+          "Stari grad"
+        ]
+      },
+      "bijelo-polje": {
+        "title": "Bijelo Polje",
+        "shortDescription": "Sjevernocrnogorski grad okružen rijekama Limu i Bistrica, kapija prema planinama.",
+        "description": "Bijelo Polje je administrativni centar sjeverne Crne Gore, smješten na ušću Bistrice u Lim.",
+        "highlights": [
+          "Crkva Sv. Petra",
+          "Rijeka Lim",
+          "Kanjon Bistrice",
+          "Stara čaršija"
+        ]
+      },
+      "bileca": {
+        "title": "Bileća",
+        "shortDescription": "Grad na obali Bilećkog jezera — jednog od najvećih vještačkih jezera na Balkanu.",
+        "description": "Bileća je hercegovački grad poznat po Bilećkom jezeru, vještačkoj akumulaciji nastajoj izgradnjom hidroelektrane Grančarevo.",
+        "highlights": [
+          "Bilećko jezero",
+          "Tvrđava",
+          "Ribolov",
+          "Planine Bjelasice"
+        ]
+      },
+      "budva": {
+        "title": "Budva",
+        "shortDescription": "Turistička prijestonica crnogorskog primorja sa čuvenim Starim gradom i plažama.",
+        "description": "Budva je najpoznatije turističko odredište Crne Gore. Stari grad okružen mletačkim bedemima i kristalno čisto more.",
+        "highlights": ["Stari grad", "Plaža Mogren", "Citadela", "Sveti Nikola"]
+      },
+      "cetinje": {
+        "title": "Cetinje",
+        "shortDescription": "Istorijska prijestonica Crne Gore sa dvorovima, muzejima i manastirom.",
+        "description": "Cetinje je duhovna i kulturna prijestonica Crne Gore. Posjetite Cetinjski manastir i Dvorac kralja Nikole.",
+        "highlights": [
+          "Cetinjski manastir",
+          "Dvorac kralja Nikole",
+          "Vladičanski dvor",
+          "Biljarda"
+        ]
+      },
+      "cacak": {
+        "title": "Čačak",
+        "shortDescription": "Srpski grad na Moravi poznat po voćarstvu, kulturi i kanjonu Ovčarsko-kablarske klisure.",
+        "description": "Čačak je jedan od najvećih gradova centralne Srbije, poznat po kulturnim institucijama i blizini kanjona Ovčarsko-kablarske klisure.",
+        "highlights": [
+          "Ovčarsko-kablarska klisura",
+          "Manastiri",
+          "Rijeka Morava",
+          "Tvrđava Grad"
+        ]
+      },
+      "dubrovnik-airport": {
+        "title": "Aerodrom Dubrovnik",
+        "shortDescription": "Brz i udoban transfer do Dubrovačkog aerodroma bez stresa i čekanja.",
+        "description": "Udoban privatni transfer od Podgorice do Aerodroma Dubrovnik (Čilipi). Vozač će vas dočekati i odvesti direktno do terminala.",
+        "highlights": [
+          "Direktan transfer",
+          "Praćenje leta",
+          "Pomoć sa prtljagom",
+          "Klimatizovano vozilo"
+        ]
+      },
+      "durres": {
+        "title": "Durrës",
+        "shortDescription": "Drevni albanski lučki grad sa rimskim amfiteatrom i lijepim plažama na Jadranu.",
+        "description": "Durrës je drugi najveći grad Albanije. Grad čuva impresivni rimski amfiteatar iz II vijeka i bogatu istoriju.",
+        "highlights": [
+          "Rimski amfiteatar",
+          "Mletačka kula",
+          "Plaže",
+          "Stari grad"
+        ]
+      },
+      "dubrovnik-city": {
+        "title": "Dubrovnik",
+        "shortDescription": "Biserna bijela Perla Jadrana — zidine, Stradun i kristalno more UNESCO-ovog dragulja.",
+        "description": "Dubrovnik je jedan od najljepših gradova na Mediteranu, pod zaštitom UNESCO-a. Prošetajte drevnim zidinama i posjetite Stradun.",
+        "highlights": [
+          "Stare zidine",
+          "Stradun",
+          "Tvrđava Lovrijenac",
+          "Otok Lokrum"
+        ]
+      },
+      "foca": {
+        "title": "Foča",
+        "shortDescription": "Grad na Drini i Tari — rafting centar Bosne i Hercegovine sa netaknutom prirodom.",
+        "description": "Foča je bosansko-hercegovački grad na ušću Tare u Drinu, poznat kao jedan od najatraktivnijih rafting centara u regionu.",
+        "highlights": [
+          "Rafting na Tari",
+          "Kanjon Tare",
+          "Rijeka Drina",
+          "Nacionalni park Sutjeska"
+        ]
+      },
+      "gusinje": {
+        "title": "Gusinje",
+        "shortDescription": "Skriveni dragulj pored Plavskog jezera i albanskih Alpa — Prokletija na dohvat ruke.",
+        "description": "Gusinje je malo mjesto na krajnjem istoku Crne Gore, smješteno u podnožju Prokletija, okruženo veličanstvenim planinama.",
+        "highlights": [
+          "Prokletije",
+          "Plavsko jezero",
+          "Rijeka Vruja",
+          "Planinski pejzaži"
+        ]
+      },
+      "herceg-novi": {
+        "title": "Herceg Novi",
+        "shortDescription": "Cvijetni grad na ulazu u Boku Kotorsku sa tvrđavama i mediteranskim šarmom.",
+        "description": "Herceg Novi je grad na ulazu u Bokokotorski zaliv, poznat po bujnoj mediteranskoj vegetaciji i istorijskim tvrđavama.",
+        "highlights": [
+          "Tvrđava Forte Mare",
+          "Kanli Kula",
+          "Plaže",
+          "Stari grad"
+        ]
+      },
+      "igalo": {
+        "title": "Igalo",
+        "shortDescription": "Poznato lječilište u Boki Kotorskoj sa ljekovitim blatom i talasoterapijom.",
+        "description": "Igalo je poznato zdravstveno-turističko odredište smješteno u Herceg Novom, poznato po ljekovitom morskom blatu.",
+        "highlights": [
+          "Institut Igalo",
+          "Ljekovito blato",
+          "Plaže Bokeljskog zaliva",
+          "Talasoterapija"
+        ]
+      },
+      "jaz": {
+        "title": "Plaža Jaz",
+        "shortDescription": "Jedna od najpoznatijih i najljepših plaža Crne Gore, odmah pored Budve.",
+        "description": "Plaža Jaz je prostrana pješčana plaža u blizini Budve, poznata po čistom moru i muzičkim festivalima.",
+        "highlights": [
+          "Pješčana plaža",
+          "Kristalno more",
+          "Muzički festivali",
+          "Panoramski pogled"
+        ]
+      },
+      "kolasin": {
+        "title": "Kolašin",
+        "shortDescription": "Planinski zimski centar sa skijaškim stazama i netaknutom prirodom Bjelasice.",
+        "description": "Kolašin je popularno planinsko odredište u centralnoj Crnoj Gori, poznat po skijaškom centru i Nacionalnom parku Biogradska gora.",
+        "highlights": [
+          "Ski centar",
+          "Biogradska gora",
+          "Rijeka Tara",
+          "Planinski pejzaži"
+        ]
+      },
+      "kopaonik": {
+        "title": "Kopaonik",
+        "shortDescription": "Najveći planinski i skijaški centar Srbije — Sunčana planina sa 55 staza.",
+        "description": "Kopaonik je nacionalni park i najpoznatije skijaško odredište Srbije sa 55 staza ukupne dužine 75 km.",
+        "highlights": [
+          "Ski staze",
+          "Nacionalni park",
+          "Vidikovci",
+          "Planinska flora"
+        ]
+      },
+      "kotor": {
+        "title": "Kotor",
+        "shortDescription": "Stari grad Kotor pod zaštitom UNESCO-a u srcu Bokokotorskog zaliva.",
+        "description": "Otkrijte najljepši zaliv Mediterana. Posjetićete Stari grad Kotor pod zaštitom UNESCO-a i slikovite Perast i Risan.",
+        "highlights": [
+          "Stari grad Kotor",
+          "Gradske zidine",
+          "Katedrala Sv. Tripuna",
+          "Tvrđava Sv. Ivana"
+        ]
+      },
+      "mojkovac": {
+        "title": "Mojkovac",
+        "shortDescription": "Grad heroja na Tari, poznat po bici na Mojkovcu i kanjonskim ljepotama.",
+        "description": "Mojkovac je grad u sjevernoj Crnoj Gori smješten uz rijeku Taru, poznat po spektakularnom kanjonu.",
+        "highlights": [
+          "Kanjon Tare",
+          "Spomen-park",
+          "Rijeka Tara",
+          "Planine Bjelasice"
+        ]
+      },
+      "mostar": {
+        "title": "Mostar",
+        "shortDescription": "Grad Starog mosta — simbol obnove i suživota na obalama zelene Neretve.",
+        "description": "Mostar je jedan od najljepših gradova Balkana, poznat po Starom mostu iz XVI vijeka, pod zaštitom UNESCO-a.",
+        "highlights": [
+          "Stari most",
+          "Stara čaršija",
+          "Rijeka Neretva",
+          "Kujundžiluk"
+        ]
+      },
+      "niksic": {
+        "title": "Nikšić",
+        "shortDescription": "Drugi grad Crne Gore sa tvrđavom Bedem, Slanskim jezerom i čuvenim pivom.",
+        "description": "Nikšić je drugi po veličini grad Crne Gore, poznat po tvrđavi Bedem i čuvenoj nikšićkoj pivari osnovanoj 1896. godine.",
+        "highlights": [
+          "Tvrđava Bedem",
+          "Slano jezero",
+          "Pivara Trebjesa",
+          "Crkva Sv. Vasilija"
+        ]
+      },
+      "nis": {
+        "title": "Niš",
+        "shortDescription": "Treći grad Srbije, rodni grad Konstantina Velikog sa tvrđavom i Ćele kulom.",
+        "description": "Niš je jedan od najstarijih gradova na Balkanu i rodni grad cara Konstantina Velikog. Posjetite moćnu tvrđavu i Ćele kulu.",
+        "highlights": [
+          "Tvrđava Niš",
+          "Ćele kula",
+          "Medijana",
+          "Tvrđavska čaršija"
+        ]
+      },
+      "novi-sad": {
+        "title": "Novi Sad",
+        "shortDescription": "Vojvođanska prijestonica sa tvrđavom Petrovaradin i čuvenim festivalom Exit.",
+        "description": "Novi Sad je drugi najveći grad Srbije, smješten na obalama Dunava. Tvrđava Petrovaradin i šareno Staro jezgro su nezaobilazni.",
+        "highlights": [
+          "Petrovaradin",
+          "Dunavski park",
+          "Staro jezgro",
+          "Exit festival"
+        ]
+      },
+      "ohrid": {
+        "title": "Ohrid",
+        "shortDescription": "Makedonski dragulj na obalama Ohridskog jezera — UNESCO-ova baština na vodi.",
+        "description": "Ohrid je jedan od najstarijih gradova u Evropi i makedonska kulturna prijestonica na obalama Ohridskog jezera.",
+        "highlights": [
+          "Ohridsko jezero",
+          "Tvrđava cara Samuela",
+          "Crkva Sv. Sofije",
+          "Plaže"
+        ]
+      },
+      "ostrog": {
+        "title": "Manastir Ostrog",
+        "shortDescription": "Čudo u stijeni — najposjećenije svetilište na Balkanu visi nad ponorima Zete.",
+        "description": "Manastir Ostrog je ugrađen u vertikalnu stijenu na visini od 900 metara. Čuva mošti Svetog Vasilija Ostroškog.",
+        "highlights": [
+          "Gornji manastir",
+          "Donji manastir",
+          "Mošti Sv. Vasilija",
+          "Panoramski pogled"
+        ]
+      },
+      "pec": {
+        "title": "Peć",
+        "shortDescription": "Kosovski grad u podnožju Prokletija sa čuvenom Patrijaršijom i kanjonom Rugova.",
+        "description": "Peć je grad na Kosovu smješten na ulazu u kanjon Rugova. Pećka Patrijaršija je pod zaštitom UNESCO-a.",
+        "highlights": [
+          "Pećka Patrijaršija",
+          "Kanjon Rugova",
+          "Prokletije",
+          "Stara čaršija"
+        ]
+      },
+      "perast": {
+        "title": "Perast",
+        "shortDescription": "Barokni biser Boke Kotorske sa dva ostrva i pogledom koji oduzima dah.",
+        "description": "Perast je mali barokni grad na obali Bokokotorskog zaliva, poznat po ostrvima Gospa od Škrpjela i Svetom Đorđu.",
+        "highlights": [
+          "Gospa od Škrpjela",
+          "Sv. Đorđe",
+          "Barokne palate",
+          "Zaliv"
+        ]
+      },
+      "petrovac-tunnel": {
+        "title": "Petrovac (tunel)",
+        "shortDescription": "Slikovito primorsko mjesto sa pinijama, antičkim ostacima i tirkiznim morem.",
+        "description": "Petrovac na Moru je jedno od najljepših crnogorskih primorskih mjesta, okruženo šumom pinija i šljunkovitim plažama.",
+        "highlights": [
+          "Plaža Petrovac",
+          "Tvrđava Lastva",
+          "Ostrvo Katic",
+          "Pinjerice"
+        ]
+      },
+      "petrovac-mountain": {
+        "title": "Petrovac (planinski put)",
+        "shortDescription": "Malerski put kroz crnogorsko zaleđe — stari put pored maslinika i sela.",
+        "description": "Vožnja starim planinskim putem prema Petrovcu nudi nezaboravne poglede na crnogorsko primorje i unutrašnjost.",
+        "highlights": [
+          "Planinski pejzaži",
+          "Stara sela",
+          "Maslinici",
+          "Panoramski putevi"
+        ]
+      },
+      "plav": {
+        "title": "Plav",
+        "shortDescription": "Plavsko jezero u podnožju Prokletija — alpska ljepota na krajnjem istoku Crne Gore.",
+        "description": "Plav je grad na krajnjem istoku Crne Gore, smješten pored Plavskog jezera u podnožju Prokletija.",
+        "highlights": [
+          "Plavsko jezero",
+          "Prokletije",
+          "Rijeka Lim",
+          "Gusinjska dolina"
+        ]
+      },
+      "pljevlja": {
+        "title": "Pljevlja",
+        "shortDescription": "Sjeverni grad sa manastirom Sv. Trojice i kulturnim blagom crnogorskog sjevera.",
+        "description": "Pljevlja su smještena na krajnjem sjeveru Crne Gore, poznata po manastiru Svete Trojice iz XV vijeka.",
+        "highlights": [
+          "Manastir Sv. Trojice",
+          "Husein-pašina džamija",
+          "Stari grad",
+          "Rijeka Tara"
+        ]
+      },
+      "prijepolje": {
+        "title": "Prijepolje",
+        "shortDescription": "Srpski grad na Limu sa manastirom Mileševa i čuvenom freskum Bijeli Anđeo.",
+        "description": "Prijepolje je grad u jugozapadnoj Srbiji. U blizini se nalazi manastir Mileševa sa čuvenom freskum Bijeli Anđeo.",
+        "highlights": [
+          "Manastir Mileševa",
+          "Bijeli Anđeo",
+          "Rijeka Lim",
+          "Staro jezgro"
+        ]
+      },
+      "pristina": {
+        "title": "Priština",
+        "shortDescription": "Mladi kosovski kapital sa šarolikom čaršijom, modernom arhitekturom i živahnom scenom.",
+        "description": "Priština je glavni grad Kosova, jedan od najmlađih i najbrže rastućih gradova na Balkanu.",
+        "highlights": [
+          "Velika džamija",
+          "Stara čaršija",
+          "Biblioteka Kosova",
+          "Newborn monument"
+        ]
+      },
+      "risan": {
+        "title": "Risan",
+        "shortDescription": "Najstariji grad Boke Kotorske sa rimskim mozaicima i drevnom istorijom.",
+        "description": "Risan je najstariji grad Bokokotorskog zaliva, poznat po rimskim mozaicima iz II vijeka i ilirskoj tvrđavi.",
+        "highlights": [
+          "Rimski mozaici",
+          "Ilirska tvrđava",
+          "Bokokotorski zaliv",
+          "Crkva Sv. Luke"
+        ]
+      },
+      "rozaje": {
+        "title": "Rožaje",
+        "shortDescription": "Bošnjački grad u srcu Pešterske visoravni okružen planinama i šumama.",
+        "description": "Rožaje su grad na sjeveroistoku Crne Gore, poznat po autentičnoj bošnjačkoj kulturi i netaknutoj prirodi.",
+        "highlights": [
+          "Planina Hajla",
+          "Gornji tok Ibra",
+          "Etno centar",
+          "Planinski pejzaži"
+        ]
+      },
+      "sarajevo": {
+        "title": "Sarajevo",
+        "shortDescription": "Bosanski Jerusalem — gdje se Istok sreće sa Zapadom na čuvenom Baščaršiji.",
+        "description": "Sarajevo je jedan od najoriginalnijih gradova Evrope, gdje milenijumska islamska, katolička, pravoslavna i jevrejska kultura žive zajedno.",
+        "highlights": ["Baščaršija", "Vijećnica", "Stari grad", "Sebilj"]
+      },
+      "shkoder": {
+        "title": "Shkodër",
+        "shortDescription": "Albanski kulturni centar pored Skadarskog jezera sa tvrđavom Rozafa.",
+        "description": "Shkodër je jedan od najstarijih gradova Albanije. Tvrđava Rozafa sa pogledom na Skadarsko jezero je impresivna.",
+        "highlights": [
+          "Tvrđava Rozafa",
+          "Skadarsko jezero",
+          "Stara čaršija",
+          "Katolička katedrala"
+        ]
+      },
+      "skopje": {
+        "title": "Skopje",
+        "shortDescription": "Makedonska prijestonica sa neobičnom mješavinom antičkih skulptura i osmanskog nasljeđa.",
+        "description": "Skopje je glavni grad Sjeverne Makedonije. Stari bazar i Kameni most čuvaju pravo lice ovog balkanskog grada.",
+        "highlights": [
+          "Stari bazar",
+          "Kameni most",
+          "Tvrđava Kale",
+          "Makedonski trg"
+        ]
+      },
+      "sutomore": {
+        "title": "Sutomore",
+        "shortDescription": "Popularno primorsko odredište sa dugom pješčanom plažom i lijepim morem.",
+        "description": "Sutomore je primorski grad u blizini Bara, poznat po jednoj od najdužih pješčanih plaža na crnogorskom primorju.",
+        "highlights": [
+          "Pješčana plaža",
+          "Tvrđava Haj-Nehaj",
+          "Kristalno more",
+          "Primorska šetnica"
+        ]
+      },
+      "sveti-stefan": {
+        "title": "Sveti Stefan",
+        "shortDescription": "Ikonsko ostrvo-hotel na crnogorskom primorju — simbol luksuza na Jadranu.",
+        "description": "Sveti Stefan je malo ostrvo-poluostrvo u blizini Budve, prepoznatljiv simbol crnogorskog turizma i luksuza.",
+        "highlights": [
+          "Ostrvo Sveti Stefan",
+          "Plaža Miločer",
+          "Kraljičina plaža",
+          "Panoramski pogled"
+        ]
+      },
+      "savnik": {
+        "title": "Šavnik",
+        "shortDescription": "Najmanji crnogorski grad u srcu Durmitorske regije sa netaknutom divljinom.",
+        "description": "Šavnik je najmanji grad u Crnoj Gori, smješten u kotlini okruženoj planinama, idealna polazna tačka za kanjon Komarnice.",
+        "highlights": [
+          "Kanjon Komarnice",
+          "Durmitor",
+          "Netaknuta priroda",
+          "Planinske rijeke"
+        ]
+      },
+      "tirana-airport": {
+        "title": "Aerodrom Tirana",
+        "shortDescription": "Udoban direktan transfer do Međunarodnog aerodroma Majka Tereza u Tirani.",
+        "description": "Privatni transfer od Podgorice do Aerodroma Tirana (Rinas). Vozač vas dočekuje i odvozi direktno do terminala.",
+        "highlights": [
+          "Direktan transfer",
+          "Praćenje leta",
+          "Pomoć sa prtljagom",
+          "Klimatizovano vozilo"
+        ]
+      },
+      "tirana-city": {
+        "title": "Tirana",
+        "shortDescription": "Šarena albanska prijestonica u preporodu — Skendeberov trg, bunkeri i živahna kultura.",
+        "description": "Tirana je jedna od najbrže mijenjajućih prijestonica u Evropi, sa živahnom kafanskom scenom i šarenim fasadama.",
+        "highlights": [
+          "Skendeberov trg",
+          "Nacionalni istorijski muzej",
+          "Bunk Art",
+          "Et'hem Bey džamija"
+        ]
+      },
+      "tivat": {
+        "title": "Tivat",
+        "shortDescription": "Moderna marina Porto Montenegro i mediteranski grad u srcu Boke Kotorske.",
+        "description": "Tivat je primorski grad u Bokokotorskom zalivu, poznat po luksuznoj marini Porto Montenegro.",
+        "highlights": [
+          "Porto Montenegro",
+          "Marina",
+          "Aerodrom Tivat",
+          "Šetnica uz more"
+        ]
+      },
+      "trebinje": {
+        "title": "Trebinje",
+        "shortDescription": "Najsunčaniji grad Bosne i Hercegovine sa starim gradom, platanima i Hercegovačkom Gračanicom.",
+        "description": "Trebinje je grad u Hercegovini na rijeci Trebišnjici, poznat kao najsunčaniji grad u regionu sa lijepim starim jezgrom.",
+        "highlights": [
+          "Kastel",
+          "Hercegovačka Gračanica",
+          "Rijeka Trebišnjica",
+          "Platani"
+        ]
+      },
+      "ulcinj": {
+        "title": "Ulcinj",
+        "shortDescription": "Najjužniji crnogorski grad sa čuvenom Velikom plažom i orijentalnim nasljeđem.",
+        "description": "Ulcinj je najjužniji grad Crne Gore, poznat po dugoj pješčanoj plaži Velika plaža i orijentalnom nasljeđu.",
+        "highlights": ["Velika plaža", "Stari grad", "Ada Bojana", "Solana"]
+      },
+      "uzice": {
+        "title": "Užice",
+        "shortDescription": "Srpski grad na Đetinji sa tvrđavom Stari grad i bogatom partizanskom istorijom.",
+        "description": "Užice je grad u zapadnoj Srbiji poznat po partizanskoj Republici Užice iz Drugog svjetskog rata.",
+        "highlights": [
+          "Tvrđava Stari grad",
+          "Republika Užice",
+          "Rijeka Đetinja",
+          "Zlatibor"
+        ]
+      },
+      "valjevo": {
+        "title": "Valjevo",
+        "shortDescription": "Srpski grad na Kolubari sa Tešnjarom, bogatim zanatskim nasljeđem i okolnom prirodom.",
+        "description": "Valjevo je grad u zapadnoj Srbiji poznat po čaršiji Tešnjar, jednoj od najočuvanijih starih čaršija u Srbiji.",
+        "highlights": [
+          "Tešnjar",
+          "Kanjon Gradac",
+          "Manastir Ćelije",
+          "Muransko polje"
+        ]
+      },
+      "zlatibor": {
+        "title": "Zlatibor",
+        "shortDescription": "Voljeni srpski planinski resort sa čistim vazduhom, travnatim visoravnima i starinama.",
+        "description": "Zlatibor je jedan od najpopularnijih planinskih odredišta u Srbiji, poznat po čistom vazduhu i blagoj klimi.",
+        "highlights": [
+          "Sirogojno",
+          "Šargan osam",
+          "Gostilje vodopad",
+          "Panoramski pejzaži"
+        ]
+      },
+      "zabljak": {
+        "title": "Žabljak i Durmitor",
+        "shortDescription": "Nestvarno surovi Durmitor jedno je od remek-djela crnogorske prirode.",
+        "description": "Putovanje do nacionalnog parka Durmitor, Crnog jezera i kanjona rijeke Tare — najdubljeg kanjona u Evropi.",
+        "highlights": [
+          "Crno jezero",
+          "Kanjon Tare",
+          "Most Đurđevića Tara",
+          "Žabljak"
+        ]
+      },
+      "skadar": {
+        "title": "Skadarsko jezero",
+        "shortDescription": "Skriveno čudo koje čeka da bude istraženo — najveće jezero na Balkanu.",
+        "description": "Krstarenje najvećim jezerom na Balkanu kroz netaknutu prirodu i ptičja staništa, uz degustaciju domaćih vina.",
+        "highlights": [
+          "Krstarenje jezerom",
+          "Vidikovac Pavlova strana",
+          "Degustacija vina",
+          "Ptičja staništa"
+        ]
+      }
+    }
+  },
+  "tourModal": {
+    "from": "od",
+    "fullName": "Ime i prezime",
+    "tourDate": "Datum ture",
+    "email": "Email",
+    "phone": "Telefon",
+    "people": "Broj osoba",
+    "person": "osoba",
+    "priceLabel": "Cijena ture (po grupi)",
+    "submit": "Rezerviši turu",
+    "sending": "Slanje...",
+    "errorMsg": "Došlo je do greške. Pokušajte ponovo ili nas pozovite.",
+    "successTitle": "Rezervacija primljena!",
+    "successMsg": "Hvala, {name}! Vaša rezervacija za turu \"{tour}\" je zabilježena. Javljamo vam se uskoro radi potvrde.",
+    "close": "Zatvori"
+  },
+  "fleet": {
+    "eyebrow": "Vozni park",
+    "title": "Naša flota",
+    "subtitle": "Raznovrsna flota vozila za udobne transfere — od limuzina do prostranih kombija."
+  },
+  "whyUs": {
+    "eyebrow": "Zašto baš mi",
+    "title": "Zašto izabrati nas?",
+    "items": [
+      {
+        "title": "Profesionalnost",
+        "desc": "Iskusni i ljubazni vozači koji govore strane jezike."
+      },
+      {
+        "title": "Tačnost",
+        "desc": "Uvijek na vrijeme — pratimo letove i prilagođavamo se."
+      },
+      {
+        "title": "Sigurnost",
+        "desc": "Osigurana vozila i maksimalna pažnja na svakoj relaciji."
+      },
+      {
+        "title": "Pouzdanost",
+        "desc": "Fiksne cijene bez skrivenih troškova i bez iznenađenja."
+      }
+    ]
+  },
+  "testimonials": {
+    "eyebrow": "Iskustva putnika",
+    "title": "Ukazali su nam povjerenje",
+    "reviews": [
+      {
+        "name": "Marko P.",
+        "location": "Beograd",
+        "text": "Vozač nas je sačekao na aerodromu tačno na vrijeme, vozilo besprijekorno čisto. Najtoplija preporuka za transfer do Kotora!"
+      },
+      {
+        "name": "Anna K.",
+        "location": "Berlin",
+        "text": "Rezervisali smo povratni transfer iz Podgorice. Vozač je bio ljubazan i dao nam mnogo korisnih savjeta o Crnoj Gori. Definitivno ćemo ih ponovo koristiti."
+      },
+      {
+        "name": "James W.",
+        "location": "London",
+        "text": "Vrlo prijatna vožnja, vozač oprezan i pristojan. Pokazao nam je mnogo o zemlji tokom puta. Svaka preporuka!"
+      }
+    ]
+  },
+  "cta": {
+    "eyebrow": "Počnite danas",
+    "title1": "Spremni za putovanje kroz",
+    "title2": "Crnu Goru?",
+    "subtitle": "Rezervišite svoj transfer za nekoliko minuta. Potvrda stiže odmah, plaćanje na licu mjesta.",
+    "bookRide": "Rezerviši vožnju",
+    "phone": "+382 67 123 456"
+  },
+  "about": {
+    "eyebrow": "O nama",
+    "title": "Vaš lokalni partner za putovanja",
+    "subtitle": "Montenegro Transfer Group je porodična kompanija posvećena tome da svako vaše putovanje bude udobno, sigurno i nezaboravno.",
+    "storyTitle1": "Putovanje koje",
+    "storyHighlight": "pamtite",
+    "storyP1": "Osnovani sa jednostavnom idejom — da gosti Crne Gore dobiju prevoz na koji mogu računati. Bez čekanja, bez neizvjesnosti i bez neprijatnih iznenađenja sa cijenom.",
+    "storyP2": "Naši vozači nijesu samo profesionalci za volanom, već i pravi vodiči koji rado podijele priče, savjete i preporuke o našoj zemlji. Bilo da vas vozimo sa aerodroma do hotela ili na cjelodnevnu turu, trudimo se da svaki kilometar bude prijatan.",
+    "stats": [
+      {
+        "value": "10+",
+        "label": "Godina iskustva"
+      },
+      {
+        "value": "15.000+",
+        "label": "Zadovoljnih putnika"
+      },
+      {
+        "value": "24/7",
+        "label": "Dostupnost"
+      },
+      {
+        "value": "5.0",
+        "label": "Prosječna ocjena"
+      }
+    ],
+    "valuesTitle1": "Šta nas",
+    "valuesHighlight": "izdvaja",
+    "values": [
+      {
+        "title": "Lokalni tim",
+        "desc": "Vozači rođeni u Crnoj Gori koji poznaju svaki put i skriveni kutak."
+      },
+      {
+        "title": "Pokrivamo cijelu zemlju",
+        "desc": "Od obale do planinskog sjevera — vozimo vas svuda."
+      },
+      {
+        "title": "Strani jezici",
+        "desc": "Komuniciramo na engleskom, ruskom i njemačkom jeziku."
+      },
+      {
+        "title": "Bez skrivenih troškova",
+        "desc": "Cijenu znate prije polaska — transparentno i pošteno."
+      }
+    ],
+    "imgAlt": "Profesionalni vozač pored vozila na crnogorskom putu"
+  },
+  "contact": {
+    "eyebrow": "Kontakt",
+    "title": "Stupite u kontakt sa nama",
+    "subtitle": "Tu smo za vas 24 sata dnevno. Pošaljite poruku ili nas pozovite, odgovaramo u najkraćem roku.",
+    "items": [
+      {
+        "label": "Telefon",
+        "value": "+382 67 123 456"
+      },
+      {
+        "label": "Email",
+        "value": "info@transfercrnagora.me"
+      },
+      {
+        "label": "Adresa",
+        "value": "Bulevar Sv. Petra Cetinjskog 12, Podgorica"
+      },
+      {
+        "label": "Radno vrijeme",
+        "value": "Svaki dan, 0–24h"
+      }
+    ],
+    "quickTitle": "Trebate brzu rezervaciju?",
+    "quickSubtitle": "Rezervišite svoj transfer online za nekoliko klikova.",
+    "quickBtn": "Rezerviši vožnju",
+    "formTitle": "Pošaljite poruku",
+    "nameLabel": "Ime i prezime",
+    "namePlaceholder": "Vaše ime",
+    "emailLabel": "Email",
+    "messageLabel": "Poruka",
+    "messagePlaceholder": "Kako vam možemo pomoći?",
+    "submit": "Pošalji poruku",
+    "sending": "Slanje...",
+    "errorMsg": "Došlo je do greške. Pokušajte ponovo ili nas pozovite.",
+    "successTitle": "Poruka poslata!",
+    "successMsg": "Hvala vam na poruci. Naš tim će vam se javiti u najkraćem mogućem roku.",
+    "emailSubject": "Nova poruka sa sajta — {name}"
+  },
+  "footer": {
+    "tagline": "Vaš pouzdan partner za sigurne transfere i privatne ture širom Crne Gore.",
+    "navTitle": "Navigacija",
+    "contactTitle": "Kontakt",
+    "socialTitle": "Pratite nas",
+    "copyright": "© {year} Montenegro Transfer Group. Sva prava zadržana."
+  }
+}
