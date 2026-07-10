@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
       return Response.json({ error: error.message }, { status: 500 });
     }
 
-    // Send Web3Forms email — non-blocking, won't fail the booking
+    // Send Web3Forms email using JSON instead of FormData
     try {
       const isTransfer = body.type === "transfer";
 
@@ -50,20 +50,23 @@ export async function POST(req: NextRequest) {
         ? `New transfer: ${body.from_location} → ${body.to_location} — ${body.name}`
         : `New tour booking: ${body.tour_name} — ${body.name}`;
 
-      const formData = new FormData();
-      formData.append("access_key", WEB3FORMS_KEY);
-      formData.append("subject", subject);
-      formData.append("name", body.name);
-      formData.append("email", body.email);
-      formData.append("message", message);
-
       const w3res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        body: formData,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject,
+          name: body.name,
+          email: body.email,
+          message,
+        }),
       });
 
       const text = await w3res.text();
-      console.log("Web3Forms raw response:", text);
+      console.log("Web3Forms status:", w3res.status, "response:", text);
     } catch (emailErr) {
       console.error("Web3Forms error (non-fatal):", emailErr);
     }
