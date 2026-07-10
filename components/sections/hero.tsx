@@ -30,10 +30,6 @@ export function Hero() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="max-w-2xl"
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-[#00C2E8]/30 bg-[#00C2E8]/10 px-4 py-1.5 text-sm font-medium text-[#00C2E8] backdrop-blur-md">
-            <Star className="h-4 w-4 fill-[#00C2E8] text-[#00C2E8]" />
-            {t("badge")}
-          </span>
           <h1 className="mt-5 font-heading text-5xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
             {t("title1")} <span className="text-[#00C2E8]">{t("title2")}</span>
           </h1>

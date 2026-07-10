@@ -1,7 +1,5 @@
-export const dynamic = "force-dynamic";
-
 import { Analytics } from "@vercel/analytics/next";
-import type { Metadata, Viewport } from "next";
+import type { Viewport } from "next";
 import { Montserrat, Poppins, Geist_Mono } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
@@ -12,6 +10,8 @@ import { BookingProvider } from "@/components/booking/booking-provider";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { FloatingBookButton } from "@/components/floating-book-button";
+import { WhatsAppButton } from "@/components/whatsapp-button";
+import { StructuredData } from "@/components/structured-data";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -30,11 +30,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Montenegro Transfer Group — Vaš partner za sigurnu vožnju",
-  description:
-    "Montenegro Transfer Group pruža udoban i siguran prevoz po pristupačnim cijenama. Rezervišite transfer sa aerodroma, privatne ture i izlete širom Crne Gore.",
-};
+export const dynamic = "force-dynamic";
 
 export const viewport: Viewport = {
   themeColor: "#0A1A3E",
@@ -49,7 +45,6 @@ export default async function RootLayout({
 }) {
   const { locale } = await params;
 
-  // Validate locale
   if (!routing.locales.includes(locale as any)) {
     notFound();
   }
@@ -61,6 +56,9 @@ export default async function RootLayout({
       lang={locale}
       className={`${montserrat.variable} ${poppins.variable} ${geistMono.variable} bg-background`}
     >
+      <head>
+        <StructuredData />
+      </head>
       <body className="font-sans antialiased">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <BookingProvider>
@@ -68,6 +66,7 @@ export default async function RootLayout({
             <main className="min-h-screen">{children}</main>
             <SiteFooter />
             <FloatingBookButton />
+            <WhatsAppButton />
           </BookingProvider>
         </NextIntlClientProvider>
         {process.env.NODE_ENV === "production" && <Analytics />}

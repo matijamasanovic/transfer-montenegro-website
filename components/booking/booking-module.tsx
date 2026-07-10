@@ -16,9 +16,18 @@ import {
   Users,
   Check,
   Loader2,
+  Car,
+  AlertCircle,
+  Baby,
 } from "lucide-react";
-import { LOCATIONS } from "@/lib/booking-data";
-import { supabase } from "@/lib/supabase";
+import {
+  LOCATIONS,
+  VEHICLES,
+  getRouteInfo,
+  calculatePrice,
+  getFromLocations,
+  getToLocations,
+} from "@/lib/booking-data";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 
@@ -31,18 +40,27 @@ export type BookingPrefill = Partial<{
 }>;
 
 type FormState = {
+  vehicle: string;
   roundTrip: boolean;
   from: string;
   to: string;
   date: string;
   time: string;
   passengers: number;
+  babySeat: boolean;
   name: string;
   email: string;
   phone: string;
   flight: string;
   note: string;
 };
+
+const STEP_KEYS = [
+  "stepVehicle",
+  "stepRoute",
+  "stepData",
+  "stepConfirm",
+] as const;
 
 export function BookingModule({
   prefill,
@@ -52,18 +70,20 @@ export function BookingModule({
   variant?: "panel" | "hero";
 }) {
   const t = useTranslations("booking");
-  const STEPS = [t("stepRoute"), t("stepData"), t("stepConfirm")];
+  const STEPS = STEP_KEYS.map((k) => t(k));
 
   const [step, setStep] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [form, setForm] = useState<FormState>({
+    vehicle: "",
     roundTrip: false,
     from: prefill?.from ?? "",
     to: prefill?.to ?? "",
     date: "",
     time: "",
-    passengers: 2,
+    passengers: 1,
+    babySeat: false,
     name: "",
     email: "",
     phone: "",
@@ -73,19 +93,38 @@ export function BookingModule({
 
   const set = <K extends keyof FormState>(key: K, value: FormState[K]) =>
     setForm((f) => ({ ...f, [key]: value }));
-  const step0Valid =
-    form.from && form.to && form.from !== form.to && form.date && form.time;
-  const step1Valid = form.name && form.email && form.phone;
+
+  const locName = (id: string) =>
+    LOCATIONS.find((l) => l.id === id)?.name ?? id;
+  const selectedVehicle = VEHICLES.find((v) => v.id === form.vehicle);
+  const routeInfo =
+    form.from && form.to ? getRouteInfo(form.from, form.to) : null;
+
+  const finalPrice =
+    routeInfo?.available && routeInfo.basePrice !== null && form.vehicle
+      ? calculatePrice(routeInfo.basePrice, form.vehicle, form.roundTrip)
+      : null;
+
+  const step0Valid = !!form.vehicle;
+  const step1Valid = !!(
+    form.from &&
+    form.to &&
+    routeInfo?.available &&
+    form.date &&
+    form.time &&
+    form.passengers >= 1 &&
+    form.passengers <= (selectedVehicle?.maxPassengers ?? 8)
+  );
+  const step2Valid = !!(form.name && form.email && form.phone);
+
   const next = () => setStep((s) => Math.min(s + 1, STEPS.length));
   const back = () => setStep((s) => Math.max(s - 1, 0));
-  const locName = (id: string) =>
-    LOCATIONS.find((l) => l.id === id)?.name ?? "";
 
   const handleConfirm = async () => {
     setLoading(true);
     setError("");
     try {
-      // Save to Supabase via API route (server-side, bypasses RLS)
+      const priceText = finalPrice ? `${finalPrice} €` : "Cijena na upit";
       const res = await fetch("/api/bookings", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -96,36 +135,41 @@ export function BookingModule({
           phone: form.phone,
           from_location: locName(form.from),
           to_location: locName(form.to),
+          vehicle: selectedVehicle?.name,
           date: form.date,
           time: form.time,
           passengers: form.passengers,
+          baby_seat: form.babySeat,
           flight: form.flight || null,
           note: form.note || null,
           round_trip: form.roundTrip,
+          price: finalPrice,
           status: "new",
         }),
       });
-
-      const result = await res.json();
-      console.log("Booking API result:", result);
-
       if (!res.ok) {
         setError(t("errorMsg"));
         return;
       }
 
-      // Send email
+      const extras = [
+        form.babySeat ? "Baby seat" : null,
+        form.flight ? `Flight: ${form.flight}` : null,
+        form.note ? `Note: ${form.note}` : null,
+      ]
+        .filter(Boolean)
+        .join("\n");
+
       const message = `TRANSFER REQUEST\n\nRoute: ${locName(
         form.from
-      )} → ${locName(form.to)}\nType: ${
+      )} → ${locName(form.to)}\nVehicle: ${selectedVehicle?.name}\nType: ${
         form.roundTrip ? "Return" : "One way"
       }\nDate/Time: ${form.date} at ${form.time}\nPassengers: ${
         form.passengers
-      }${form.flight ? `\nFlight: ${form.flight}` : ""}${
-        form.note ? `\nNote: ${form.note}` : ""
-      }\n\nCONTACT\nName: ${form.name}\nEmail: ${form.email}\nPhone: ${
-        form.phone
-      }`.trim();
+      }\nPrice: ${priceText}\n${extras}\n\nCONTACT\nName: ${
+        form.name
+      }\nEmail: ${form.email}\nPhone: ${form.phone}`.trim();
+
       const fd = new FormData();
       fd.append("access_key", WEB3FORMS_KEY);
       fd.append(
@@ -143,18 +187,21 @@ export function BookingModule({
       });
 
       next();
-    } catch (err) {
-      console.error("Booking error:", err);
+    } catch {
       setError(t("errorMsg"));
     } finally {
       setLoading(false);
     }
   };
 
+  const fromLocations = getFromLocations();
+  const toLocations = form.from ? getToLocations(form.from) : [];
+
   return (
     <div
       className={cn("flex flex-col", variant === "hero" ? "p-0" : "p-6 sm:p-8")}
     >
+      {/* Progress */}
       {step < STEPS.length && (
         <div className="mb-6 flex items-center gap-2">
           {STEPS.map((label, i) => (
@@ -193,6 +240,7 @@ export function BookingModule({
       )}
 
       <AnimatePresence mode="wait">
+        {/* STEP 0 — VEHICLE */}
         {step === 0 && (
           <motion.div
             key="step0"
@@ -202,6 +250,74 @@ export function BookingModule({
             transition={{ duration: 0.25 }}
             className="flex flex-col gap-4"
           >
+            <p className="text-sm text-white/50">{t("selectVehicleHint")}</p>
+            <div className="flex flex-col gap-3">
+              {VEHICLES.map((v) => (
+                <button
+                  key={v.id}
+                  type="button"
+                  onClick={() => set("vehicle", v.id)}
+                  className={cn(
+                    "flex items-center gap-4 rounded-xl border p-4 text-left transition",
+                    form.vehicle === v.id
+                      ? "border-[#00C2E8] bg-[#00C2E8]/10"
+                      : "border-white/10 bg-white/5 hover:border-white/20"
+                  )}
+                >
+                  <div
+                    className={cn(
+                      "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl",
+                      form.vehicle === v.id ? "bg-[#00C2E8]/20" : "bg-white/5"
+                    )}
+                  >
+                    <Car
+                      className={cn(
+                        "h-5 w-5",
+                        form.vehicle === v.id
+                          ? "text-[#00C2E8]"
+                          : "text-white/40"
+                      )}
+                    />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div
+                      className={cn(
+                        "font-semibold",
+                        form.vehicle === v.id ? "text-white" : "text-white/80"
+                      )}
+                    >
+                      {v.name}
+                    </div>
+                    <div className="text-xs text-white/40">{v.description}</div>
+                  </div>
+                  {form.vehicle === v.id && (
+                    <Check className="h-5 w-5 shrink-0 text-[#00C2E8]" />
+                  )}
+                </button>
+              ))}
+            </div>
+            <button
+              type="button"
+              disabled={!step0Valid}
+              onClick={next}
+              className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-[#00C2E8] py-3.5 text-sm font-semibold text-[#0A1A3E] transition enabled:hover:bg-[#00D4FF] disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              {t("next")} <ArrowRight className="h-4 w-4" />
+            </button>
+          </motion.div>
+        )}
+
+        {/* STEP 1 — ROUTE */}
+        {step === 1 && (
+          <motion.div
+            key="step1"
+            initial={{ opacity: 0, x: 24 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -24 }}
+            transition={{ duration: 0.25 }}
+            className="flex flex-col gap-4"
+          >
+            {/* One way / Return */}
             <div className="grid grid-cols-2 gap-2 rounded-xl bg-white/5 p-1">
               <button
                 type="button"
@@ -209,7 +325,7 @@ export function BookingModule({
                 className={cn(
                   "rounded-lg py-2 text-sm font-medium transition",
                   !form.roundTrip
-                    ? "bg-[#00C2E8] text-[#0A1A3E] shadow-sm"
+                    ? "bg-[#00C2E8] text-[#0A1A3E]"
                     : "text-white/50 hover:text-white"
                 )}
               >
@@ -221,48 +337,80 @@ export function BookingModule({
                 className={cn(
                   "rounded-lg py-2 text-sm font-medium transition",
                   form.roundTrip
-                    ? "bg-[#00C2E8] text-[#0A1A3E] shadow-sm"
+                    ? "bg-[#00C2E8] text-[#0A1A3E]"
                     : "text-white/50 hover:text-white"
                 )}
               >
                 {t("return")}
               </button>
             </div>
+
+            {/* From */}
             <Field label={t("from")} icon={<MapPin className="h-4 w-4" />}>
               <select
                 value={form.from}
-                onChange={(e) => set("from", e.target.value)}
+                onChange={(e) => {
+                  set("from", e.target.value);
+                  set("to", "");
+                }}
                 className="w-full bg-transparent text-sm font-medium text-white outline-none"
               >
                 <option value="" className="bg-[#0D1F4E]">
                   {t("selectDeparture")}
                 </option>
-                {LOCATIONS.map((l) => (
+                {fromLocations.map((l) => (
                   <option key={l.id} value={l.id} className="bg-[#0D1F4E]">
                     {l.name}
                   </option>
                 ))}
               </select>
             </Field>
+
+            {/* To */}
             <Field label={t("to")} icon={<MapPin className="h-4 w-4" />}>
               <select
                 value={form.to}
                 onChange={(e) => set("to", e.target.value)}
-                className="w-full bg-transparent text-sm font-medium text-white outline-none"
+                disabled={!form.from}
+                className="w-full bg-transparent text-sm font-medium text-white outline-none disabled:opacity-40"
               >
                 <option value="" className="bg-[#0D1F4E]">
                   {t("selectDestination")}
                 </option>
-                {LOCATIONS.map((l) => (
+                {toLocations.map((l) => (
                   <option key={l.id} value={l.id} className="bg-[#0D1F4E]">
                     {l.name}
                   </option>
                 ))}
               </select>
             </Field>
-            {form.from && form.to && form.from === form.to && (
-              <p className="text-sm text-red-400">{t("sameLocationError")}</p>
+
+            {/* Quote only */}
+            {routeInfo?.quoteOnly && (
+              <div className="flex items-center gap-2 rounded-xl border border-amber-500/20 bg-amber-500/10 px-4 py-3 text-sm text-amber-300">
+                <AlertCircle className="h-4 w-4 shrink-0" />
+                {t("quoteOnly")}
+              </div>
             )}
+
+            {/* Price preview */}
+            {routeInfo?.available && form.vehicle && (
+              <div className="rounded-xl border border-[#00C2E8]/20 bg-[#00C2E8]/5 px-4 py-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-white/50">
+                    {form.roundTrip ? t("return") : t("oneWay")} ·{" "}
+                    {selectedVehicle?.name}
+                  </span>
+                  <span className="font-heading text-xl font-bold text-[#00C2E8]">
+                    {finalPrice !== null
+                      ? `${finalPrice} €`
+                      : t("priceOnRequest")}
+                  </span>
+                </div>
+              </div>
+            )}
+
+            {/* Date & Time */}
             <div className="grid grid-cols-2 gap-4">
               <Field label={t("date")} icon={<Calendar className="h-4 w-4" />}>
                 <input
@@ -281,10 +429,17 @@ export function BookingModule({
                 />
               </Field>
             </div>
+
+            {/* Passengers */}
             <Field label={t("passengers")} icon={<Users className="h-4 w-4" />}>
               <div className="flex w-full items-center justify-between">
                 <span className="text-sm font-medium text-white">
                   {form.passengers} {t("passengersUnit")}
+                  {selectedVehicle && (
+                    <span className="ml-1 text-white/40">
+                      (max {selectedVehicle.maxPassengers})
+                    </span>
+                  )}
                 </span>
                 <div className="flex items-center gap-3">
                   <Stepper
@@ -298,27 +453,80 @@ export function BookingModule({
                   </span>
                   <Stepper
                     onClick={() =>
-                      set("passengers", Math.min(20, form.passengers + 1))
+                      set(
+                        "passengers",
+                        Math.min(
+                          selectedVehicle?.maxPassengers ?? 8,
+                          form.passengers + 1
+                        )
+                      )
                     }
                     label="+"
                   />
                 </div>
               </div>
             </Field>
+
+            {/* Baby seat */}
             <button
               type="button"
-              disabled={!step0Valid}
-              onClick={next}
-              className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-[#00C2E8] py-3.5 text-sm font-semibold text-[#0A1A3E] transition enabled:hover:bg-[#00D4FF] disabled:cursor-not-allowed disabled:opacity-40"
+              onClick={() => set("babySeat", !form.babySeat)}
+              className={cn(
+                "flex items-center gap-3 rounded-xl border p-4 text-left transition",
+                form.babySeat
+                  ? "border-[#00C2E8] bg-[#00C2E8]/10"
+                  : "border-white/10 bg-white/5 hover:border-white/20"
+              )}
             >
-              {t("next")} <ArrowRight className="h-4 w-4" />
+              <div
+                className={cn(
+                  "flex h-9 w-9 shrink-0 items-center justify-center rounded-xl",
+                  form.babySeat ? "bg-[#00C2E8]/20" : "bg-white/5"
+                )}
+              >
+                <Baby
+                  className={cn(
+                    "h-5 w-5",
+                    form.babySeat ? "text-[#00C2E8]" : "text-white/40"
+                  )}
+                />
+              </div>
+              <div className="flex-1">
+                <div
+                  className={cn(
+                    "text-sm font-semibold",
+                    form.babySeat ? "text-white" : "text-white/70"
+                  )}
+                >
+                  {t("babySeat")}
+                </div>
+                <div className="text-xs text-white/40">{t("babySeatDesc")}</div>
+              </div>
+              <div
+                className={cn(
+                  "flex h-5 w-5 shrink-0 items-center justify-center rounded border transition",
+                  form.babySeat
+                    ? "border-[#00C2E8] bg-[#00C2E8]"
+                    : "border-white/20"
+                )}
+              >
+                {form.babySeat && <Check className="h-3 w-3 text-[#0A1A3E]" />}
+              </div>
             </button>
+
+            <BackNext
+              onBack={back}
+              onNext={next}
+              disabled={!step1Valid}
+              nextLabel={t("next")}
+            />
           </motion.div>
         )}
 
-        {step === 1 && (
+        {/* STEP 2 — DATA */}
+        {step === 2 && (
           <motion.div
-            key="step1"
+            key="step2"
             initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -24 }}
@@ -379,15 +587,16 @@ export function BookingModule({
             <BackNext
               onBack={back}
               onNext={next}
-              disabled={!step1Valid}
+              disabled={!step2Valid}
               nextLabel={t("review")}
             />
           </motion.div>
         )}
 
-        {step === 2 && (
+        {/* STEP 3 — CONFIRM */}
+        {step === 3 && (
           <motion.div
-            key="step2"
+            key="step3"
             initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -24 }}
@@ -399,6 +608,10 @@ export function BookingModule({
                 {t("reviewTitle")}
               </h4>
               <dl className="flex flex-col gap-2 text-sm">
+                <Row
+                  label={t("vehicleLabel")}
+                  value={selectedVehicle?.name ?? ""}
+                />
                 <Row
                   label={t("routeLabel")}
                   value={`${locName(form.from)} → ${locName(form.to)}`}
@@ -415,6 +628,7 @@ export function BookingModule({
                   label={t("passengersLabel")}
                   value={`${form.passengers}`}
                 />
+                {form.babySeat && <Row label={t("babySeat")} value="✓" />}
                 {form.flight && (
                   <Row label={t("flightLabel")} value={form.flight} />
                 )}
@@ -422,6 +636,16 @@ export function BookingModule({
                   label={t("contactLabel")}
                   value={`${form.name} · ${form.phone}`}
                 />
+                <div className="mt-2 flex items-center justify-between border-t border-white/10 pt-2">
+                  <dt className="font-semibold text-white/70">
+                    {t("priceLabel")}
+                  </dt>
+                  <dd className="font-heading text-xl font-bold text-[#00C2E8]">
+                    {finalPrice !== null
+                      ? `${finalPrice} €`
+                      : t("priceOnRequest")}
+                  </dd>
+                </div>
               </dl>
             </div>
             {error && <p className="text-sm text-red-400">{error}</p>}
@@ -453,6 +677,7 @@ export function BookingModule({
           </motion.div>
         )}
 
+        {/* SUCCESS */}
         {step === STEPS.length && (
           <motion.div
             key="success"

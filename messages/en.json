@@ -59,7 +59,17 @@
     "sending": "Sending...",
     "errorMsg": "Something went wrong. Please try again or call us.",
     "successTitle": "Request sent!",
-    "successMsg": "Thank you, {name}! Your transfer request has been received. We will contact you shortly to confirm."
+    "successMsg": "Thank you, {name}! Your transfer request has been received. We will contact you shortly to confirm.",
+    "stepVehicle": "Vehicle",
+    "selectVehicleHint": "Choose the vehicle type for your transfer",
+    "routeUnavailable": "This route is not available. Please choose a different combination.",
+    "quoteOnly": "The price for this route will be provided after booking. We will contact you shortly.",
+    "priceOnRequest": "Price on request",
+    "priceLabel": "Total price",
+    "vehicleLabel": "Vehicle",
+    "tooManyPassengers": "Maximum passengers for this vehicle is {max}.",
+    "babySeat": "Baby seat",
+    "babySeatDesc": "Free of charge · Select if a child is travelling"
   },
   "popularTours": {
     "eyebrow": "Experiences",
@@ -76,589 +86,125 @@
     "from": "from",
     "bookTour": "Book tour",
     "tours": {
-      "ada-bojana": {
-        "title": "Ada Bojana",
-        "shortDescription": "A unique river island in southern Montenegro, a paradise for nature lovers.",
-        "description": "Ada Bojana is a triangular river island at the mouth of the Bojana river. Famous for wild beaches, fresh fish restaurants and a relaxed atmosphere.",
+      "kotor-perast-tivat": {
+        "title": "Kotor · Perast · Tivat",
+        "shortDescription": "Medieval Kotor, the gem of Perast and luxury Porto Montenegro marina — the beauty of Boka Bay in one day.",
+        "description": "If you want to experience the true beauty of Boka Bay, this is the perfect tour for you. From the medieval streets of Kotor and the timeless charm of Perast to the luxury waterfront of Porto Montenegro, this journey combines history, culture, and breathtaking coastal scenery in one unforgettable day.",
         "highlights": [
-          "Wild beach",
-          "Fish restaurants",
-          "Bojana estuary",
-          "Nature reserve"
+          "Kotor — Old Town & city walls",
+          "Perast — Our Lady of the Rocks",
+          "Tivat — Porto Montenegro marina",
+          "Boka Bay panorama"
+        ],
+        "stops": [
+          {
+            "name": "Kotor",
+            "desc": "One of the most beautiful towns on the Adriatic coast, famous for its Old Town, charming stone streets, and impressive medieval fortifications."
+          },
+          {
+            "name": "Perast",
+            "desc": "A small coastal gem known for its baroque architecture and breathtaking views of Our Lady of the Rocks, which can be reached by boat."
+          },
+          {
+            "name": "Tivat",
+            "desc": "A modern seaside town and home to Porto Montenegro, a luxury marina known for its yachts, waterfront restaurants, and relaxing atmosphere."
+          }
         ]
       },
-      "andrijevica": {
-        "title": "Andrijevica",
-        "shortDescription": "A mountain town at the entrance to the Lim canyon, gateway to the Prokletije mountains.",
-        "description": "Andrijevica is a peaceful mountain town along the Lim river, known as the starting point for excursions into Prokletije National Park.",
+      "biogradska-gora": {
+        "title": "Biograd Lake · Biogradska Gora",
+        "shortDescription": "One of Europe's last primeval forests, a crystal-clear lake and untouched mountain nature of Montenegro.",
+        "description": "Discover one of Montenegro's most breathtaking natural gems! Nestled in the heart of Biogradska Gora National Park, Biograd Lake is surrounded by one of Europe's last remaining primeval forests, offering spectacular mountain scenery and peaceful nature.",
         "highlights": [
-          "Lim canyon",
-          "Prokletije",
-          "Mountain scenery",
-          "Lim river"
+          "Biogradska Gora National Park",
+          "Walk around the crystal-clear lake",
+          "One of Europe's last primeval forests",
+          "Optional boat ride (seasonal)"
+        ],
+        "stops": [
+          {
+            "name": "Biogradska Gora",
+            "desc": "A national park preserving one of Europe's last primeval forests, home to rare plant and animal species."
+          },
+          {
+            "name": "Biograd Lake",
+            "desc": "A crystal-clear mountain lake perfect for walking, relaxation, photography and a seasonal boat ride."
+          }
         ]
       },
-      "banja-luka": {
-        "title": "Banja Luka",
-        "shortDescription": "Administrative centre of Republika Srpska with Kastel fortress and a vibrant bazaar.",
-        "description": "Banja Luka is the second largest city in Bosnia and Herzegovina, located on the banks of the Vrbas river. Visit Kastel fortress and enjoy rafting.",
+      "durmitor-tara": {
+        "title": "Žabljak · Black Lake · Tara Bridge",
+        "shortDescription": "The mountain peaks of Durmitor, crystal Black Lake and the bridge above the deepest canyon in Europe.",
+        "description": "If you want to experience the nature Montenegro is famous for, this is the right tour. From the mighty mountain peaks of Durmitor to the spectacular Tara canyon, some of the most beautiful scenery in the country awaits you.",
         "highlights": [
-          "Kastel fortress",
-          "Rafting on Vrbas",
-          "Bazaar",
-          "Temple of Christ the Saviour"
+          "Žabljak — highest town in the Balkans",
+          "Black Lake — walk and photography",
+          "Tara Bridge — canyon view",
+          "Durmitor National Park"
+        ],
+        "stops": [
+          {
+            "name": "Žabljak",
+            "desc": "The highest town in the Balkans and the heart of Durmitor National Park, surrounded by untouched nature and mountain landscapes."
+          },
+          {
+            "name": "Black Lake",
+            "desc": "One of the most beautiful lakes in Montenegro, ideal for walking, relaxation and photos you will remember for a long time."
+          },
+          {
+            "name": "Tara Bridge",
+            "desc": "One of the most famous symbols of Montenegro, with an unforgettable view of the Tara canyon — the deepest canyon in Europe."
+          }
         ]
       },
-      "bar": {
-        "title": "Bar",
-        "shortDescription": "Montenegro's largest port with ruins of Old Bar and an olive tree two thousand years old.",
-        "description": "Bar is a vibrant coastal town known for its old town, ancient olive grove and lively port. Old Bar is an archaeological gem.",
+      "lipa-rijeka-pavlova": {
+        "title": "Lipa Cave · Rijeka Crnojevića · Pavlova Strana",
+        "shortDescription": "Underground chambers of Lipa, the peaceful Crnojevića river and the most beautiful viewpoint in Montenegro.",
+        "description": "If you want to discover the natural beauty and authentic spirit of Montenegro, this tour is the right choice. From the fascinating underground world of Lipa Cave, through the peaceful Rijeka Crnojevića, to one of the most famous viewpoints in the country.",
         "highlights": [
-          "Old Bar",
-          "Ancient olive tree",
-          "Bar harbour",
-          "Fortress"
+          "Lipa Cave — guided underground tour",
+          "Rijeka Crnojevića — boat ride",
+          "Pavlova Strana — panoramic viewpoint",
+          "Lake Skadar from a bird's eye view"
+        ],
+        "stops": [
+          {
+            "name": "Lipa Cave",
+            "desc": "Explore one of the largest caves in Montenegro and discover impressive underground chambers, stalactites and stalagmites on a guided tour."
+          },
+          {
+            "name": "Rijeka Crnojevića",
+            "desc": "A charming place with a rich history, surrounded by untouched nature and a river leading to Lake Skadar. Perfect for a stroll or a boat ride."
+          },
+          {
+            "name": "Pavlova Strana",
+            "desc": "One of the most famous viewpoints in Montenegro with a spectacular view of the Rijeka Crnojevića meander."
+          }
         ]
       },
-      "belgrade": {
-        "title": "Belgrade",
-        "shortDescription": "Serbia's vibrant capital at the confluence of the Sava and Danube — Kalemegdan, Skadarlija and nightlife.",
-        "description": "Belgrade is one of the oldest cities in Europe. Visit the mighty Kalemegdan fortress and stroll through the bohemian Skadarlija quarter.",
+      "budva-sveti-stefan-virpazar": {
+        "title": "Budva · Sveti Stefan · Virpazar",
+        "shortDescription": "Budva Old Town, iconic Sveti Stefan and a cruise on Lake Skadar — sea and nature in one day.",
+        "description": "If you want to experience the best of the Montenegrin coast and Lake Skadar in one day, this is the right tour. A blend of history, stunning viewpoints, sea and untouched nature provides an experience you will remember for a long time.",
         "highlights": [
-          "Kalemegdan",
-          "Skadarlija",
-          "Ada Ciganlija",
-          "Knez Mihailova"
-        ]
-      },
-      "berane": {
-        "title": "Berane",
-        "shortDescription": "A town on the Lim river surrounded by mountains, with rich history and the Đurđevi Stupovi monastery.",
-        "description": "Berane is a town in northern Montenegro in the Berane valley along the Lim river. Nearby is the Đurđevi Stupovi monastery.",
-        "highlights": [
-          "Đurđevi Stupovi monastery",
-          "Lim river",
-          "Berane field",
-          "Old town"
-        ]
-      },
-      "bijelo-polje": {
-        "title": "Bijelo Polje",
-        "shortDescription": "Northern Montenegrin town surrounded by the Lim and Bistrica rivers, gateway to the mountains.",
-        "description": "Bijelo Polje is the administrative centre of northern Montenegro, located at the confluence of the Bistrica and Lim rivers.",
-        "highlights": [
-          "St. Peter's Church",
-          "Lim river",
-          "Bistrica canyon",
-          "Old bazaar"
-        ]
-      },
-      "bileca": {
-        "title": "Bileća",
-        "shortDescription": "A town on the shore of Bileća Lake — one of the largest artificial lakes in the Balkans.",
-        "description": "Bileća is a Herzegovinian town known for Bileća Lake, an artificial reservoir created by the Grančarevo hydroelectric dam.",
-        "highlights": [
-          "Bileća lake",
-          "Fortress",
-          "Fishing",
-          "Bjelasica mountains"
-        ]
-      },
-      "budva": {
-        "title": "Budva",
-        "shortDescription": "Tourist capital of the Montenegrin coast with the famous Old Town and beaches.",
-        "description": "Budva is Montenegro's most famous tourist destination. The Old Town surrounded by Venetian walls and crystal clear sea await you.",
-        "highlights": ["Old Town", "Mogren beach", "Citadel", "Sveti Nikola"]
-      },
-      "cetinje": {
-        "title": "Cetinje",
-        "shortDescription": "Historical capital of Montenegro with palaces, museums and a monastery.",
-        "description": "Cetinje is the spiritual and cultural capital of Montenegro. Visit Cetinje Monastery and the Palace of King Nikola.",
-        "highlights": [
-          "Cetinje Monastery",
-          "Palace of King Nikola",
-          "Bishop's Palace",
-          "Biljarda"
-        ]
-      },
-      "cacak": {
-        "title": "Čačak",
-        "shortDescription": "Serbian town on the Morava known for fruit growing, culture and the Ovčar-Kablar canyon.",
-        "description": "Čačak is one of the largest cities in central Serbia, known for cultural institutions and the Ovčar-Kablar canyon.",
-        "highlights": [
-          "Ovčar-Kablar canyon",
-          "Monasteries",
-          "Morava river",
-          "Grad fortress"
-        ]
-      },
-      "dubrovnik-airport": {
-        "title": "Dubrovnik Airport",
-        "shortDescription": "Fast and comfortable transfer to Dubrovnik Airport without stress or waiting.",
-        "description": "Comfortable private transfer from Podgorica to Dubrovnik Airport (Čilipi). Your driver will meet you and take you directly to the terminal.",
-        "highlights": [
-          "Direct transfer",
-          "Flight tracking",
-          "Luggage assistance",
-          "Air-conditioned vehicle"
-        ]
-      },
-      "durres": {
-        "title": "Durrës",
-        "shortDescription": "Ancient Albanian port city with a Roman amphitheatre and beautiful Adriatic beaches.",
-        "description": "Durrës is Albania's second largest city. It preserves an impressive Roman amphitheatre from the 2nd century and a rich history.",
-        "highlights": [
-          "Roman amphitheatre",
-          "Venetian tower",
-          "Beaches",
-          "Old town"
-        ]
-      },
-      "dubrovnik-city": {
-        "title": "Dubrovnik",
-        "shortDescription": "The Pearl of the Adriatic — city walls, Stradun and crystal clear sea of a UNESCO gem.",
-        "description": "Dubrovnik is one of the most beautiful cities on the Mediterranean, protected by UNESCO. Walk the ancient walls and visit Stradun.",
-        "highlights": [
-          "City walls",
-          "Stradun",
-          "Lovrijenac fortress",
-          "Lokrum island"
-        ]
-      },
-      "foca": {
-        "title": "Foča",
-        "shortDescription": "City on the Drina and Tara — Bosnia and Herzegovina's rafting centre with unspoiled nature.",
-        "description": "Foča is a Bosnian-Herzegovinian town at the confluence of the Tara and Drina rivers, known as one of the best rafting destinations.",
-        "highlights": [
-          "Tara rafting",
-          "Tara canyon",
-          "Drina river",
-          "Sutjeska National Park"
-        ]
-      },
-      "gusinje": {
-        "title": "Gusinje",
-        "shortDescription": "Hidden gem beside Plav lake and the Albanian Alps — the Prokletije within reach.",
-        "description": "Gusinje is a small town in eastern Montenegro, nestled at the foot of the Prokletije mountains surrounded by crystal rivers.",
-        "highlights": [
-          "Prokletije",
-          "Plav lake",
-          "Vruja river",
-          "Mountain scenery"
-        ]
-      },
-      "herceg-novi": {
-        "title": "Herceg Novi",
-        "shortDescription": "The flower city at the entrance to the Bay of Kotor with fortresses and Mediterranean charm.",
-        "description": "Herceg Novi is a town at the entrance to the Bay of Kotor, known for lush Mediterranean vegetation and historic fortresses.",
-        "highlights": [
-          "Forte Mare fortress",
-          "Kanli Kula",
-          "Beaches",
-          "Old town"
-        ]
-      },
-      "igalo": {
-        "title": "Igalo",
-        "shortDescription": "Famous spa resort in the Bay of Kotor with healing mud and thalassotherapy.",
-        "description": "Igalo is a well-known health resort in Herceg Novi, famous for its therapeutic sea mud and thalassotherapy treatments.",
-        "highlights": [
-          "Igalo Institute",
-          "Healing mud",
-          "Bay beaches",
-          "Thalassotherapy"
-        ]
-      },
-      "jaz": {
-        "title": "Jaz Beach",
-        "shortDescription": "One of the most famous and beautiful beaches in Montenegro, just next to Budva.",
-        "description": "Jaz is a wide sandy beach near Budva, known for its clear sea and famous music festivals held there in summer.",
-        "highlights": [
-          "Sandy beach",
-          "Crystal sea",
-          "Music festivals",
-          "Panoramic view"
-        ]
-      },
-      "kolasin": {
-        "title": "Kolašin",
-        "shortDescription": "Mountain winter resort with ski slopes and the unspoiled nature of Bjelasica.",
-        "description": "Kolašin is a popular mountain destination in central Montenegro, known for its ski resort and Biogradska Gora National Park.",
-        "highlights": [
-          "Ski resort",
-          "Biogradska Gora",
-          "Tara river",
-          "Mountain scenery"
-        ]
-      },
-      "kopaonik": {
-        "title": "Kopaonik",
-        "shortDescription": "Serbia's largest mountain and ski resort — the Sunny Mountain with 55 slopes.",
-        "description": "Kopaonik is a national park and Serbia's most famous ski destination with 55 slopes totalling 75 km in length.",
-        "highlights": [
-          "Ski slopes",
-          "National park",
-          "Viewpoints",
-          "Mountain flora"
-        ]
-      },
-      "kotor": {
-        "title": "Kotor",
-        "shortDescription": "Kotor Old Town, a UNESCO World Heritage Site in the heart of the Bay of Kotor.",
-        "description": "Discover the most beautiful bay in the Mediterranean. Visit UNESCO-listed Kotor Old Town and picturesque Perast and Risan.",
-        "highlights": [
-          "Kotor Old Town",
-          "City walls",
-          "St. Tryphon Cathedral",
-          "St. Ivan fortress"
-        ]
-      },
-      "mojkovac": {
-        "title": "Mojkovac",
-        "shortDescription": "A town of heroes on the Tara, known for the Battle of Mojkovac and canyon scenery.",
-        "description": "Mojkovac is a town in northern Montenegro along the Tara river, known for the spectacular Tara canyon.",
-        "highlights": [
-          "Tara canyon",
-          "Memorial park",
-          "Tara river",
-          "Bjelasica mountains"
-        ]
-      },
-      "mostar": {
-        "title": "Mostar",
-        "shortDescription": "City of the Old Bridge — symbol of renewal and coexistence on the banks of the green Neretva.",
-        "description": "Mostar is one of the most beautiful cities in the Balkans, known for its 16th-century Old Bridge, a UNESCO World Heritage Site.",
-        "highlights": [
-          "Old Bridge",
-          "Old bazaar",
-          "Neretva river",
-          "Kujundžiluk"
-        ]
-      },
-      "niksic": {
-        "title": "Nikšić",
-        "shortDescription": "Montenegro's second city with Bedem fortress, Slano lake and famous beer.",
-        "description": "Nikšić is Montenegro's second largest city, known for Bedem fortress and the famous Nikšić brewery founded in 1896.",
-        "highlights": [
-          "Bedem fortress",
-          "Slano lake",
-          "Trebjesa brewery",
-          "St. Vasilije Church"
-        ]
-      },
-      "nis": {
-        "title": "Niš",
-        "shortDescription": "Serbia's third city, birthplace of Constantine the Great, with fortress and Skull Tower.",
-        "description": "Niš is one of the oldest cities in the Balkans and birthplace of Emperor Constantine the Great. Visit the fortress and the chilling Skull Tower.",
-        "highlights": [
-          "Niš fortress",
-          "Skull Tower",
-          "Mediana",
-          "Fortress bazaar"
-        ]
-      },
-      "novi-sad": {
-        "title": "Novi Sad",
-        "shortDescription": "Vojvodina's capital with Petrovaradin fortress and the famous Exit festival.",
-        "description": "Novi Sad is Serbia's second largest city on the banks of the Danube. Petrovaradin fortress and the colourful Old Town are unmissable.",
-        "highlights": [
-          "Petrovaradin",
-          "Danube park",
-          "Old town",
-          "Exit festival"
-        ]
-      },
-      "ohrid": {
-        "title": "Ohrid",
-        "shortDescription": "Macedonian gem on the shores of Lake Ohrid — UNESCO heritage on water.",
-        "description": "Ohrid is one of the oldest cities in Europe and Macedonia's cultural capital on the shores of Lake Ohrid.",
-        "highlights": [
-          "Lake Ohrid",
-          "Tsar Samuel's fortress",
-          "St. Sophia Church",
-          "Beaches"
-        ]
-      },
-      "ostrog": {
-        "title": "Ostrog Monastery",
-        "shortDescription": "A miracle in the rock — the most visited shrine in the Balkans hangs above the Zeta gorges.",
-        "description": "Ostrog Monastery is built into a vertical cliff at 900 metres altitude. It houses the relics of Saint Vasilije of Ostrog.",
-        "highlights": [
-          "Upper monastery",
-          "Lower monastery",
-          "Relics of St. Vasilije",
-          "Panoramic view"
-        ]
-      },
-      "pec": {
-        "title": "Peć (Peja)",
-        "shortDescription": "Kosovo town at the foot of the Prokletije with the famous Patriarchate and Rugova canyon.",
-        "description": "Peć is a town in Kosovo at the entrance to the Rugova canyon. The Patriarchate of Peć is a UNESCO World Heritage Site.",
-        "highlights": [
-          "Patriarchate of Peć",
-          "Rugova canyon",
-          "Prokletije",
-          "Old bazaar"
-        ]
-      },
-      "perast": {
-        "title": "Perast",
-        "shortDescription": "The baroque gem of the Bay of Kotor with two islands and a breathtaking view.",
-        "description": "Perast is a small baroque town on the shore of the Bay of Kotor, known for the islands of Our Lady of the Rocks and St. George.",
-        "highlights": [
-          "Our Lady of the Rocks",
-          "St. George island",
-          "Baroque palaces",
-          "Bay view"
-        ]
-      },
-      "petrovac-tunnel": {
-        "title": "Petrovac (tunnel route)",
-        "shortDescription": "Picturesque coastal town with pine forests, ancient ruins and turquoise sea.",
-        "description": "Petrovac na Moru is one of Montenegro's most beautiful coastal towns, surrounded by pine forests and pebble beaches.",
-        "highlights": [
-          "Petrovac beach",
-          "Lastva fortress",
-          "Katic island",
-          "Pine forest"
-        ]
-      },
-      "petrovac-mountain": {
-        "title": "Petrovac (mountain route)",
-        "shortDescription": "Scenic drive through the Montenegrin hinterland — old road past olive groves and villages.",
-        "description": "The old mountain road to Petrovac offers unforgettable views of the Montenegrin coast and interior, past authentic villages.",
-        "highlights": [
-          "Mountain scenery",
-          "Old villages",
-          "Olive groves",
-          "Panoramic roads"
-        ]
-      },
-      "plav": {
-        "title": "Plav",
-        "shortDescription": "Plav lake at the foot of the Prokletije — alpine beauty in eastern Montenegro.",
-        "description": "Plav is a town in eastern Montenegro beside Plav lake at the foot of the Prokletije mountains.",
-        "highlights": ["Plav lake", "Prokletije", "Lim river", "Gusinje valley"]
-      },
-      "pljevlja": {
-        "title": "Pljevlja",
-        "shortDescription": "Northern town with the Holy Trinity Monastery and cultural heritage of northern Montenegro.",
-        "description": "Pljevlja is located in the far north of Montenegro, known for the 15th-century Holy Trinity Monastery with its valuable library.",
-        "highlights": [
-          "Holy Trinity Monastery",
-          "Hussein Pasha mosque",
-          "Old town",
-          "Tara river"
-        ]
-      },
-      "prijepolje": {
-        "title": "Prijepolje",
-        "shortDescription": "Serbian town on the Lim with Mileševa monastery and the famous White Angel fresco.",
-        "description": "Prijepolje is a town in southwestern Serbia on the Lim river. Nearby is Mileševa Monastery with the famous White Angel fresco.",
-        "highlights": [
-          "Mileševa monastery",
-          "White Angel",
-          "Lim river",
-          "Old town"
-        ]
-      },
-      "pristina": {
-        "title": "Pristina",
-        "shortDescription": "Young Kosovo capital with a colourful bazaar, modern architecture and a vibrant scene.",
-        "description": "Pristina is the capital of Kosovo, one of the youngest and fastest growing cities in the Balkans.",
-        "highlights": [
-          "Great Mosque",
-          "Old bazaar",
-          "Kosovo Library",
-          "Newborn monument"
-        ]
-      },
-      "risan": {
-        "title": "Risan",
-        "shortDescription": "The oldest town in the Bay of Kotor with Roman mosaics and ancient history.",
-        "description": "Risan is the oldest town in the Bay of Kotor, known for Roman mosaics from the 2nd century and the Illyrian fortress.",
-        "highlights": [
-          "Roman mosaics",
-          "Illyrian fortress",
-          "Bay of Kotor",
-          "St. Luke's Church"
-        ]
-      },
-      "rozaje": {
-        "title": "Rožaje",
-        "shortDescription": "Bosniak town in the heart of the Pešter plateau surrounded by mountains and forests.",
-        "description": "Rožaje is a town in northeastern Montenegro, known for authentic Bosniak culture and unspoiled nature.",
-        "highlights": [
-          "Hajla mountain",
-          "Upper Ibar",
-          "Ethno centre",
-          "Mountain scenery"
-        ]
-      },
-      "sarajevo": {
-        "title": "Sarajevo",
-        "shortDescription": "The Bosnian Jerusalem — where East meets West at the famous Baščaršija bazaar.",
-        "description": "Sarajevo is one of the most original cities in Europe, where Islamic, Catholic, Orthodox and Jewish cultures live side by side.",
-        "highlights": ["Baščaršija", "City Hall", "Old town", "Sebilj fountain"]
-      },
-      "shkoder": {
-        "title": "Shkodër",
-        "shortDescription": "Albanian cultural centre beside Lake Shkodër with the impressive Rozafa fortress.",
-        "description": "Shkodër is one of the oldest cities in Albania. The Rozafa fortress with its view over Lake Shkodër is one of the most impressive in the region.",
-        "highlights": [
-          "Rozafa fortress",
-          "Lake Shkodër",
-          "Old bazaar",
-          "Catholic cathedral"
-        ]
-      },
-      "skopje": {
-        "title": "Skopje",
-        "shortDescription": "Macedonian capital with an unusual mix of ancient sculptures and Ottoman heritage.",
-        "description": "Skopje is the capital of North Macedonia. The Old Bazaar and Stone Bridge preserve the true face of this Balkan city.",
-        "highlights": [
-          "Old Bazaar",
-          "Stone Bridge",
-          "Kale fortress",
-          "Macedonia Square"
-        ]
-      },
-      "sutomore": {
-        "title": "Sutomore",
-        "shortDescription": "Popular coastal destination with a long sandy beach and beautiful sea.",
-        "description": "Sutomore is a coastal town near Bar, known for one of the longest sandy beaches on the Montenegrin coast.",
-        "highlights": [
-          "Sandy beach",
-          "Haj-Nehaj fortress",
-          "Crystal sea",
-          "Coastal promenade"
-        ]
-      },
-      "sveti-stefan": {
-        "title": "Sveti Stefan",
-        "shortDescription": "Iconic island hotel on the Montenegrin coast — symbol of luxury on the Adriatic.",
-        "description": "Sveti Stefan is a small island peninsula near Budva, a recognisable symbol of Montenegrin tourism and luxury.",
-        "highlights": [
-          "Sveti Stefan island",
-          "Miločer beach",
-          "Queen's beach",
-          "Panoramic view"
-        ]
-      },
-      "savnik": {
-        "title": "Šavnik",
-        "shortDescription": "Montenegro's smallest town in the heart of the Durmitor region with unspoiled wilderness.",
-        "description": "Šavnik is Montenegro's smallest town, nestled in a valley surrounded by mountains, an ideal base for the Komarnica canyon.",
-        "highlights": [
-          "Komarnica canyon",
-          "Durmitor",
-          "Unspoiled nature",
-          "Mountain rivers"
-        ]
-      },
-      "tirana-airport": {
-        "title": "Tirana Airport",
-        "shortDescription": "Comfortable direct transfer to Tirana's Mother Teresa International Airport.",
-        "description": "Private transfer from Podgorica to Tirana Airport (Rinas). Your driver meets you and takes you directly to the departure terminal.",
-        "highlights": [
-          "Direct transfer",
-          "Flight tracking",
-          "Luggage assistance",
-          "Air-conditioned vehicle"
-        ]
-      },
-      "tirana-city": {
-        "title": "Tirana",
-        "shortDescription": "Albania's colourful capital on the rise — Skanderbeg Square, bunkers and vibrant culture.",
-        "description": "Tirana is one of the fastest-changing capitals in Europe, with a vibrant café scene and colourful building facades.",
-        "highlights": [
-          "Skanderbeg Square",
-          "National History Museum",
-          "Bunk Art",
-          "Et'hem Bey mosque"
-        ]
-      },
-      "tivat": {
-        "title": "Tivat",
-        "shortDescription": "Modern Porto Montenegro marina and Mediterranean town in the heart of the Bay of Kotor.",
-        "description": "Tivat is a coastal town in the Bay of Kotor, known for the luxury Porto Montenegro marina attracting yachts from around the world.",
-        "highlights": [
-          "Porto Montenegro",
-          "Marina",
-          "Tivat airport",
-          "Seafront promenade"
-        ]
-      },
-      "trebinje": {
-        "title": "Trebinje",
-        "shortDescription": "Bosnia's sunniest town with the old town, plane trees and the Herzegovinian Gračanica.",
-        "description": "Trebinje is a Herzegovinian town on the Trebišnjica river, known as the sunniest town in the region with a beautiful old core.",
-        "highlights": [
-          "Kastel",
-          "Herzegovinian Gračanica",
-          "Trebišnjica river",
-          "Plane trees"
-        ]
-      },
-      "ulcinj": {
-        "title": "Ulcinj",
-        "shortDescription": "Montenegro's southernmost town with the famous Great Beach and Oriental heritage.",
-        "description": "Ulcinj is Montenegro's southernmost town, known for the long sandy Great Beach and strong Oriental heritage.",
-        "highlights": ["Great Beach", "Old town", "Ada Bojana", "Salt flats"]
-      },
-      "uzice": {
-        "title": "Užice",
-        "shortDescription": "Serbian town on the Đetinja with the Old Town fortress and rich Partisan history.",
-        "description": "Užice is a town in western Serbia on the Đetinja river, known for the Partisan Republic of Užice in World War II.",
-        "highlights": [
-          "Old Town fortress",
-          "Republic of Užice",
-          "Đetinja river",
-          "Zlatibor"
-        ]
-      },
-      "valjevo": {
-        "title": "Valjevo",
-        "shortDescription": "Serbian town on the Kolubara with the Tešnjar bazaar, craft heritage and surrounding nature.",
-        "description": "Valjevo is a town in western Serbia known for the Tešnjar bazaar, one of the best-preserved old bazaars in Serbia.",
-        "highlights": [
-          "Tešnjar",
-          "Gradac canyon",
-          "Ćelije monastery",
-          "Murano field"
-        ]
-      },
-      "zlatibor": {
-        "title": "Zlatibor",
-        "shortDescription": "Beloved Serbian mountain resort with fresh air, green plateaus and heritage sites.",
-        "description": "Zlatibor is one of Serbia's most popular mountain destinations, known for its clean mountain air and mild climate.",
-        "highlights": [
-          "Sirogojno",
-          "Šargan Eight railway",
-          "Gostilje waterfall",
-          "Panoramic scenery"
-        ]
-      },
-      "zabljak": {
-        "title": "Žabljak and Durmitor",
-        "shortDescription": "The wild and rugged Durmitor is one of the masterpieces of Montenegrin nature.",
-        "description": "A journey to Durmitor National Park, Black Lake and the Tara canyon — the deepest canyon in Europe.",
-        "highlights": [
-          "Black Lake",
-          "Tara canyon",
-          "Đurđevića Tara bridge",
-          "Žabljak"
-        ]
-      },
-      "skadar": {
-        "title": "Lake Skadar",
-        "shortDescription": "A hidden wonder waiting to be explored — the largest lake in the Balkans.",
-        "description": "A cruise on the largest lake in the Balkans through untouched nature and bird habitats, with wine tasting at local wineries.",
-        "highlights": [
-          "Lake cruise",
-          "Pavlova Strana viewpoint",
-          "Wine tasting",
-          "Bird habitats"
+          "Budva — Old Town and beaches",
+          "Sveti Stefan — iconic view",
+          "Virpazar — lake cruise",
+          "Lake Skadar National Park"
+        ],
+        "stops": [
+          {
+            "name": "Budva",
+            "desc": "One of the oldest towns on the Adriatic, known for its Old Town, beautiful beaches and vibrant atmosphere."
+          },
+          {
+            "name": "Sveti Stefan",
+            "desc": "One of the symbols of Montenegro and the most photographed spots on the Adriatic. The perfect place for unforgettable photos."
+          },
+          {
+            "name": "Virpazar",
+            "desc": "A small fishing village, the ideal starting point for a boat ride through Lake Skadar National Park."
+          }
         ]
       }
     }
@@ -671,18 +217,44 @@
     "phone": "Phone",
     "people": "Number of people",
     "person": "people",
-    "priceLabel": "Tour price (per group)",
+    "priceLabel": "Total price",
     "submit": "Book tour",
     "sending": "Sending...",
     "errorMsg": "Something went wrong. Please try again or call us.",
     "successTitle": "Booking received!",
     "successMsg": "Thank you, {name}! Your booking for the tour \"{tour}\" has been noted. We will contact you shortly to confirm.",
-    "close": "Close"
+    "close": "Close",
+    "selectVehicle": "Select vehicle",
+    "next": "Next",
+    "review": "Review",
+    "reviewTitle": "Booking summary",
+    "tourLabel": "Tour",
+    "vehicleLabel": "Vehicle",
+    "babySeat": "Baby seat",
+    "babySeatDesc": "Free of charge · Select if a child is travelling"
   },
   "fleet": {
     "eyebrow": "Fleet",
     "title": "Our fleet",
-    "subtitle": "A diverse fleet of vehicles for comfortable transfers — from sedans to spacious vans."
+    "subtitle": "A diverse fleet of vehicles for comfortable transfers — from sedans to spacious vans.",
+    "vehicles": {
+      "skoda-superb": {
+        "name": "Škoda Superb",
+        "description": "Spacious and comfortable sedan ideal for couples and business travel."
+      },
+      "passat-b8": {
+        "name": "Volkswagen Passat B8",
+        "description": "Reliable and comfortable sedan for everyday transfers and longer journeys."
+      },
+      "premium": {
+        "name": "Premium limousine",
+        "description": "Audi A6 — ultimate comfort and discretion for the most demanding passengers."
+      },
+      "van": {
+        "name": "Van / Minibus",
+        "description": "Spacious van for groups up to 8 passengers — ideal for families and larger groups."
+      }
+    }
   },
   "whyUs": {
     "eyebrow": "Why us",
@@ -794,7 +366,7 @@
       },
       {
         "label": "Email",
-        "value": "info@transfercrnagora.me"
+        "value": "montenegrotransfergroup@gmail.com"
       },
       {
         "label": "Address",
@@ -827,5 +399,15 @@
     "contactTitle": "Contact",
     "socialTitle": "Follow us",
     "copyright": "© {year} Montenegro Transfer Group. All rights reserved."
+  },
+  "whatsapp": {
+    "title": "Quick booking",
+    "subtitle": "Message us on WhatsApp"
+  },
+  "popularRoutes": {
+    "eyebrow": "Popular routes",
+    "title": "Transfer prices from Podgorica",
+    "subtitle": "Fixed prices, no hidden costs. Click on a route and book instantly.",
+    "note": "Prices apply for Škoda Superb and Passat B8. Premium vehicle +€20, Van ×2 price."
   }
 }

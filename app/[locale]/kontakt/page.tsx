@@ -20,8 +20,8 @@ import { useTranslations } from "next-intl";
 const WEB3FORMS_KEY = "f61e5aaf-5734-4b59-af8a-a44d9df98184";
 const CONTACT_ICONS = [Phone, Mail, MapPin, Clock];
 const CONTACT_HREFS = [
-  "tel:+38267123456",
-  "mailto:info@transfercrnagora.me",
+  "tel:+38268861538",
+  "mailto:montenegrotransfergroup@gmail.com",
   undefined,
   undefined,
 ];

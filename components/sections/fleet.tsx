@@ -1,10 +1,32 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Users, Briefcase, Wifi } from "lucide-react";
-import { VEHICLES } from "@/lib/booking-data";
+import { Users, Wifi } from "lucide-react";
 import { Reveal } from "@/components/anim/reveal";
 import { useTranslations } from "next-intl";
+
+const FLEET = [
+  {
+    id: "skoda-superb",
+    image: "/skoda-superb-2023.png",
+    maxPassengers: 4,
+  },
+  {
+    id: "passat-b8",
+    image: "/passat8.png",
+    maxPassengers: 4,
+  },
+  {
+    id: "premium",
+    image: "/Audi-A6.png",
+    maxPassengers: 4,
+  },
+  {
+    id: "van",
+    image: "/kombi.png",
+    maxPassengers: 8,
+  },
+];
 
 export function Fleet() {
   const t = useTranslations("fleet");
@@ -25,8 +47,8 @@ export function Fleet() {
             </p>
           </div>
         </Reveal>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {VEHICLES.map((v, i) => (
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {FLEET.map((v, i) => (
             <motion.div
               key={v.id}
               initial={{ opacity: 0, y: 30 }}
@@ -37,23 +59,20 @@ export function Fleet() {
             >
               <div className="flex h-40 items-center justify-center overflow-hidden rounded-xl bg-[#0D1F4E]">
                 <img
-                  src={v.image || "/placeholder.svg"}
-                  alt={v.name}
+                  src={v.image}
+                  alt={t(`vehicles.${v.id}.name`)}
                   className="h-32 w-auto object-contain transition duration-500 group-hover:scale-105"
                 />
               </div>
               <h3 className="mt-5 font-heading text-xl font-bold text-white">
-                {v.name}
+                {t(`vehicles.${v.id}.name`)}
               </h3>
               <p className="mt-1 flex-1 text-sm text-white/60">
-                {v.description}
+                {t(`vehicles.${v.id}.description`)}
               </p>
               <div className="mt-4 flex items-center gap-4 text-sm text-white/50">
                 <span className="inline-flex items-center gap-1.5">
-                  <Users className="h-4 w-4 text-[#00C2E8]" /> {v.passengers}
-                </span>
-                <span className="inline-flex items-center gap-1.5">
-                  <Briefcase className="h-4 w-4 text-[#00C2E8]" /> {v.luggage}
+                  <Users className="h-4 w-4 text-[#00C2E8]" /> {v.maxPassengers}
                 </span>
                 <span className="inline-flex items-center gap-1.5">
                   <Wifi className="h-4 w-4 text-[#00C2E8]" /> WiFi

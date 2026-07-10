@@ -34,6 +34,8 @@ type Booking = {
   passengers: number | null;
   flight: string | null;
   note: string | null;
+  vehicle: string | null;
+  baby_seat: boolean | null;
   round_trip: boolean | null;
   price: number | null;
   status: string;
@@ -364,6 +366,15 @@ export default function AdminDashboard() {
                           </Detail>
                         )}
 
+                        {b.vehicle && (
+                          <Detail
+                            icon={<Car className="h-3.5 w-3.5" />}
+                            label="Vozilo"
+                          >
+                            {b.vehicle}
+                          </Detail>
+                        )}
+
                         {b.date && (
                           <Detail
                             icon={<Calendar className="h-3.5 w-3.5" />}
@@ -406,6 +417,15 @@ export default function AdminDashboard() {
                             {b.email}
                           </a>
                         </Detail>
+
+                        {b.baby_seat && (
+                          <Detail
+                            icon={<span className="text-xs">🍼</span>}
+                            label="Dječije sjedište"
+                          >
+                            Da
+                          </Detail>
+                        )}
 
                         {b.flight && (
                           <Detail

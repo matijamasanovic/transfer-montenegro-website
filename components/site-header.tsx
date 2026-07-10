@@ -54,7 +54,6 @@ export function SiteHeader() {
       )}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Logo */}
         <Link href="/" className="flex items-center">
           <img
             src="/mtg-logo.png"
@@ -63,7 +62,6 @@ export function SiteHeader() {
           />
         </Link>
 
-        {/* Desktop nav */}
         <nav className="hidden items-center gap-1 lg:flex">
           {NAV.map((item) => (
             <Link
@@ -84,7 +82,6 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
-          {/* Language switcher */}
           <div className="relative">
             <button
               type="button"
@@ -120,7 +117,6 @@ export function SiteHeader() {
             )}
           </div>
 
-          {/* Desktop CTA */}
           <button
             type="button"
             onClick={() => openBooking()}
@@ -129,7 +125,6 @@ export function SiteHeader() {
             {t("bookRide")}
           </button>
 
-          {/* Mobile hamburger */}
           <button
             type="button"
             aria-label="Meni"
@@ -145,7 +140,6 @@ export function SiteHeader() {
         </div>
       </div>
 
-      {/* Mobile dropdown */}
       {mobileOpen && (
         <div className="border-t border-white/10 bg-[#0A1A3E] px-4 py-4 lg:hidden">
           <nav className="flex flex-col gap-1">
@@ -164,7 +158,6 @@ export function SiteHeader() {
               </Link>
             ))}
 
-            {/* Mobile language switcher */}
             <div className="mt-2 flex gap-2">
               {LOCALES.map((l) => (
                 <button
