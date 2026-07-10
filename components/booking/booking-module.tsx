@@ -31,7 +31,7 @@ import {
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 
-const WEB3FORMS_KEY = "16456e60-b809-421c-98d3-f8428c75af7b";
+const WEB3FORMS_KEY = "ee0b1e4f-1101-4d4f-baba-7aa09f5905dc";
 
 export type BookingPrefill = Partial<{
   from: string;
