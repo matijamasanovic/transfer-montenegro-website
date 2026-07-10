@@ -1,7 +1,7 @@
 import { supabaseAdmin } from "@/lib/supabase-admin";
 import { NextRequest } from "next/server";
 
-const WEB3FORMS_KEY = "f61e5aaf-5734-4b59-af8a-a44d9df98184";
+const WEB3FORMS_KEY = "16456e60-b809-421c-98d3-f8428c75af7b";
 
 export async function POST(req: NextRequest) {
   try {

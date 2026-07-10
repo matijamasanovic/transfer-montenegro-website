@@ -17,7 +17,7 @@ import { Reveal } from "@/components/anim/reveal";
 import { useBooking } from "@/components/booking/booking-provider";
 import { useTranslations } from "next-intl";
 
-const WEB3FORMS_KEY = "f61e5aaf-5734-4b59-af8a-a44d9df98184";
+const WEB3FORMS_KEY = "16456e60-b809-421c-98d3-f8428c75af7b";
 const CONTACT_ICONS = [Phone, Mail, MapPin, Clock];
 const CONTACT_HREFS = [
   "tel:+38268861538",
