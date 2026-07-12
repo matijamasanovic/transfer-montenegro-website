@@ -92,12 +92,6 @@ export default function AdminDashboard() {
   const [expanded, setExpanded] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-    checkAuth();
-    fetchBookings();
-  }, []);
-
   const checkAuth = async () => {
     const {
       data: { session },
@@ -112,6 +106,12 @@ export default function AdminDashboard() {
     setBookings(Array.isArray(data) ? data : []);
     setLoading(false);
   };
+
+  useEffect(() => {
+    setMounted(true);
+    checkAuth();
+    fetchBookings();
+  }, []);
 
   const updateStatus = async (id: string, status: string) => {
     await fetch("/api/admin/bookings", {
