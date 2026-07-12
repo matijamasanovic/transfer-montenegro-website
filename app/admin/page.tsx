@@ -101,10 +101,15 @@ export default function AdminDashboard() {
 
   const fetchBookings = async () => {
     setLoading(true);
-    const res = await fetch("/api/admin/bookings");
-    const data = await res.json();
-    setBookings(Array.isArray(data) ? data : []);
-    setLoading(false);
+    try {
+      const res = await fetch("/api/admin/bookings");
+      const data = await res.json();
+      setBookings(Array.isArray(data) ? data : []);
+    } catch (err) {
+      console.error("Failed to fetch bookings:", err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
