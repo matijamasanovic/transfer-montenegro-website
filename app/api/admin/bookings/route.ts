@@ -123,13 +123,13 @@ async function sendStatusEmail(booking: any, status: string) {
               ? `
           <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:16px 20px;margin-bottom:24px;">
             <p style="color:#1d4ed8;font-size:14px;font-weight:600;margin:0 0 4px;">Kontaktirajte nas</p>
-            <p style="color:#1e40af;font-size:13px;margin:0;">📞 +382 68 848 989 &nbsp;|&nbsp; 💬 WhatsApp / Viber</p>
+            <p style="color:#1e40af;font-size:13px;margin:0;">📞 +382 68 861 538 &nbsp;|&nbsp; 💬 WhatsApp / Viber</p>
           </div>
           `
               : `
           <div style="background:#fafafa;border:1px solid #e2e8f0;border-radius:12px;padding:16px 20px;margin-bottom:24px;">
             <p style="color:#374151;font-size:14px;font-weight:600;margin:0 0 4px;">Trebate pomoć?</p>
-            <p style="color:#6b7280;font-size:13px;margin:0;">Kontaktirajte nas: 📞 +382 68 848 989 &nbsp;|&nbsp; 💬 WhatsApp / Viber</p>
+            <p style="color:#6b7280;font-size:13px;margin:0;">Kontaktirajte nas: 📞 +382 68 861 538 &nbsp;|&nbsp; 💬 WhatsApp / Viber</p>
           </div>
           `
           }

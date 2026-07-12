@@ -305,7 +305,7 @@
     "title2": "Crnu Goru?",
     "subtitle": "Rezervišite svoj transfer za nekoliko minuta. Potvrda stiže odmah, plaćanje na licu mjesta.",
     "bookRide": "Rezerviši vožnju",
-    "phone": "+382 67 123 456"
+    "phone": "+382 68 861 538"
   },
   "about": {
     "eyebrow": "O nama",
@@ -362,15 +362,11 @@
     "items": [
       {
         "label": "Telefon",
-        "value": "+382 67 123 456"
+        "value": "+382 68 861 538"
       },
       {
         "label": "Email",
         "value": "montenegrotransfergroup@gmail.com"
-      },
-      {
-        "label": "Adresa",
-        "value": "Bulevar Sv. Petra Cetinjskog 12, Podgorica"
       },
       {
         "label": "Radno vrijeme",

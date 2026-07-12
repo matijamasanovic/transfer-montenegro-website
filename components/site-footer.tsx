@@ -53,10 +53,11 @@ export function SiteFooter() {
             </h4>
             <ul className="flex flex-col gap-3 text-sm text-white/60">
               <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4 text-[#00C2E8]" /> + 382 68 848 989
+                <Phone className="h-4 w-4 text-[#00C2E8]" /> + 382 68 861 538
               </li>
               <li className="flex items-center gap-2">
-                <Mail className="h-4 w-4 text-[#00C2E8]" /> info@transfer-cg.me
+                <Mail className="h-4 w-4 text-[#00C2E8]" />{" "}
+                montenegrotransfergroup@gmail.com
               </li>
               <li className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-[#00C2E8]" /> Podgorica, Crna

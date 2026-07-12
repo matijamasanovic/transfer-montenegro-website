@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { X } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-const WHATSAPP_NUMBER = "38268848989";
+const WHATSAPP_NUMBER = "38268861538";
 
 export function WhatsAppButton() {
   const t = useTranslations("whatsapp");
