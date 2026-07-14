@@ -29,10 +29,10 @@ const ROUTES = [
   },
   {
     from: "Podgorica",
-    to: "Herceg Novi",
-    price: 110,
+    to: "Ada Bojana",
+    price: 90,
     fromId: "podgorica",
-    toId: "herceg-novi",
+    toId: "ada-bojana",
   },
   { from: "Podgorica", to: "Bar", price: 55, fromId: "podgorica", toId: "bar" },
   {
@@ -44,6 +44,13 @@ const ROUTES = [
   },
   {
     from: "Podgorica",
+    to: "Herceg Novi",
+    price: 110,
+    fromId: "podgorica",
+    toId: "herceg-novi",
+  },
+  {
+    from: "Podgorica",
     to: "Dubrovnik",
     price: 160,
     fromId: "podgorica",
@@ -51,10 +58,24 @@ const ROUTES = [
   },
   {
     from: "Podgorica",
+    to: "Sveti Stefan",
+    price: 70,
+    fromId: "podgorica",
+    toId: "sveti-stefan",
+  },
+  {
+    from: "Podgorica",
     to: "Sarajevo",
     price: 170,
     fromId: "podgorica",
     toId: "sarajevo",
+  },
+  {
+    from: "Podgorica",
+    to: "Tirana",
+    price: 150,
+    fromId: "podgorica",
+    toId: "tirana-city",
   },
   {
     from: "Podgorica",
@@ -83,6 +104,27 @@ const ROUTES = [
     price: 100,
     fromId: "podgorica",
     toId: "zabljak",
+  },
+  {
+    from: "Podgorica",
+    to: "Ostrog",
+    price: 40,
+    fromId: "podgorica",
+    toId: "ostrog",
+  },
+  {
+    from: "Podgorica",
+    to: "Shkodër",
+    price: 65,
+    fromId: "podgorica",
+    toId: "shkoder",
+  },
+  {
+    from: "Podgorica",
+    to: "Saranda",
+    price: 300,
+    fromId: "podgorica",
+    toId: "saranda",
   },
 ];
 

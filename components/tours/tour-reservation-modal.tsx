@@ -54,7 +54,7 @@ export function TourReservationModal({
 
   const selectedVehicle = VEHICLES.find((v) => v.id === vehicle);
   const finalPrice =
-    tour && vehicle ? calculatePrice(tour.price, vehicle, false) : null;
+    tour && vehicle ? calculatePrice(tour.price, vehicle, false, true) : null;
 
   const reset = () => {
     setStep("vehicle");
@@ -261,7 +261,7 @@ export function TourReservationModal({
                           vehicle === v.id ? "text-[#00C2E8]" : "text-white/30"
                         )}
                       >
-                        {calculatePrice(tour.price, v.id, false)} €
+                        {calculatePrice(tour.price, v.id, false, true)} €
                       </div>
                       {vehicle === v.id && (
                         <Check className="ml-auto h-4 w-4 text-[#00C2E8]" />

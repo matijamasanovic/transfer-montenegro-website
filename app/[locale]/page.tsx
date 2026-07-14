@@ -83,11 +83,11 @@ export default function HomePage() {
     <>
       <Hero />
       <PopularRoutes />
+      <CtaBand />
       <PopularTours />
       <Fleet />
       <WhyChooseUs />
       <Testimonials />
-      <CtaBand />
     </>
   );
 }

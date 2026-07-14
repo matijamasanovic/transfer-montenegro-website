@@ -98,11 +98,21 @@ export function BookingModule({
     LOCATIONS.find((l) => l.id === id)?.name ?? id;
   const selectedVehicle = VEHICLES.find((v) => v.id === form.vehicle);
   const routeInfo =
-    form.from && form.to ? getRouteInfo(form.from, form.to) : null;
+    form.from && form.to
+      ? getRouteInfo(form.from, form.to, form.vehicle)
+      : null;
+  const isPodgoricaRoute =
+    ["podgorica", "aerodrom-podgorica"].includes(form.from) ||
+    ["podgorica", "aerodrom-podgorica"].includes(form.to);
 
   const finalPrice =
     routeInfo?.available && routeInfo.basePrice !== null && form.vehicle
-      ? calculatePrice(routeInfo.basePrice, form.vehicle, form.roundTrip)
+      ? calculatePrice(
+          routeInfo.basePrice,
+          form.vehicle,
+          form.roundTrip,
+          isPodgoricaRoute
+        )
       : null;
 
   const step0Valid = !!form.vehicle;

@@ -11,70 +11,79 @@ export type Vehicle = {
   priceModifier: "base" | "plus20" | "times2";
 };
 
-export const LOCATIONS: Location[] = [
+// Priority locations shown first in dropdowns
+const PRIORITY_LOCATIONS: Location[] = [
   { id: "aerodrom-podgorica", name: "Aerodrom Podgorica" },
   { id: "podgorica", name: "Podgorica" },
   { id: "ada-bojana", name: "Ada Bojana" },
+  { id: "ulcinj", name: "Ulcinj" },
+  { id: "bar", name: "Bar" },
+  { id: "petrovac-tunnel", name: "Petrovac (tunel)" },
+  { id: "petrovac-mountain", name: "Petrovac (planinski put)" },
+  { id: "budva", name: "Budva" },
+  { id: "kotor", name: "Kotor" },
+  { id: "tivat", name: "Tivat" },
+  { id: "herceg-novi", name: "Herceg Novi" },
+  { id: "dubrovnik-city", name: "Dubrovnik (centar)" },
+  { id: "dubrovnik-airport", name: "Aerodrom Dubrovnik" },
+  { id: "split", name: "Split" },
+  { id: "tirana-city", name: "Tirana (centar)" },
+  { id: "tirana-airport", name: "Aerodrom Tirana" },
+  { id: "mostar", name: "Mostar" },
+  { id: "sarajevo", name: "Sarajevo" },
+  { id: "skadar", name: "Skadarsko jezero" },
+  { id: "durres", name: "Durrës" },
+  { id: "drac", name: "Drač" },
+  { id: "himara", name: "Himara" },
+  { id: "saranda", name: "Saranda" },
+  { id: "ksamil", name: "Ksamil" },
+  { id: "prizren", name: "Prizren" },
+  { id: "pristina", name: "Priština" },
+  { id: "ohrid", name: "Ohrid" },
+];
+
+const OTHER_LOCATIONS: Location[] = [
   { id: "andrijevica", name: "Andrijevica" },
   { id: "banja-luka", name: "Banja Luka" },
-  { id: "bar", name: "Bar" },
   { id: "belgrade", name: "Beograd" },
   { id: "berane", name: "Berane" },
   { id: "bijelo-polje", name: "Bijelo Polje" },
   { id: "bileca", name: "Bileća" },
-  { id: "budva", name: "Budva" },
-  { id: "cetinje", name: "Cetinje" },
   { id: "cacak", name: "Čačak" },
-  { id: "drac", name: "Drač" },
-  { id: "dubrovnik-airport", name: "Aerodrom Dubrovnik" },
-  { id: "dubrovnik-city", name: "Dubrovnik (centar)" },
-  { id: "durres", name: "Durrës" },
+  { id: "cetinje", name: "Cetinje" },
   { id: "foca", name: "Foča" },
   { id: "gusinje", name: "Gusinje" },
-  { id: "herceg-novi", name: "Herceg Novi" },
-  { id: "himara", name: "Himara" },
   { id: "igalo", name: "Igalo" },
   { id: "jaz", name: "Jaz" },
   { id: "kolasin", name: "Kolašin" },
   { id: "kopaonik", name: "Kopaonik" },
-  { id: "kotor", name: "Kotor" },
-  { id: "ksamil", name: "Ksamil" },
   { id: "mojkovac", name: "Mojkovac" },
-  { id: "mostar", name: "Mostar" },
   { id: "niksic", name: "Nikšić" },
   { id: "nis", name: "Niš" },
   { id: "novi-sad", name: "Novi Sad" },
-  { id: "ohrid", name: "Ohrid" },
   { id: "ostrog", name: "Ostrog" },
   { id: "pec", name: "Peć" },
   { id: "perast", name: "Perast" },
-  { id: "petrovac-tunnel", name: "Petrovac (tunel)" },
-  { id: "petrovac-mountain", name: "Petrovac (planinski put)" },
   { id: "plav", name: "Plav" },
   { id: "pljevlja", name: "Pljevlja" },
   { id: "prijepolje", name: "Prijepolje" },
-  { id: "pristina", name: "Priština" },
-  { id: "prizren", name: "Prizren" },
   { id: "risan", name: "Risan" },
   { id: "rozaje", name: "Rožaje" },
-  { id: "sarajevo", name: "Sarajevo" },
-  { id: "saranda", name: "Saranda" },
   { id: "savnik", name: "Šavnik" },
   { id: "shkoder", name: "Shkodër" },
-  { id: "skadar", name: "Skadarsko jezero" },
   { id: "skopje", name: "Skopje" },
-  { id: "split", name: "Split" },
   { id: "sutomore", name: "Sutomore" },
   { id: "sveti-stefan", name: "Sveti Stefan" },
-  { id: "tirana-airport", name: "Aerodrom Tirana" },
-  { id: "tirana-city", name: "Tirana (centar)" },
-  { id: "tivat", name: "Tivat" },
   { id: "trebinje", name: "Trebinje" },
-  { id: "ulcinj", name: "Ulcinj" },
   { id: "uzice", name: "Užice" },
   { id: "valjevo", name: "Valjevo" },
   { id: "zabljak", name: "Žabljak" },
   { id: "zlatibor", name: "Zlatibor" },
+];
+
+export const LOCATIONS: Location[] = [
+  ...PRIORITY_LOCATIONS,
+  ...OTHER_LOCATIONS,
 ];
 
 export const VEHICLES: Vehicle[] = [
@@ -101,12 +110,10 @@ export const VEHICLES: Vehicle[] = [
   },
 ];
 
-// Base prices from Podgorica (city or airport — same prices)
+// Prices from Podgorica (standard vehicle)
 const PODGORICA_PRICES: Record<string, number> = {
-  // Airport Podgorica ↔ Podgorica city
   "aerodrom-podgorica": 25,
   podgorica: 25,
-  // All destinations
   "ada-bojana": 90,
   andrijevica: 105,
   "banja-luka": 310,
@@ -146,7 +153,7 @@ const PODGORICA_PRICES: Record<string, number> = {
   plav: 100,
   pljevlja: 140,
   prijepolje: 130,
-  pristina: 300,
+  pristina: 240,
   prizren: 200,
   risan: 95,
   rozaje: 110,
@@ -170,12 +177,94 @@ const PODGORICA_PRICES: Record<string, number> = {
   zabljak: 100,
 };
 
-// Both Podgorica city and airport count as "Podgorica origin"
+// Prices from Tivat/Kotor (standard vehicle) — Kotor same as Tivat
+const TIVAT_KOTOR_PRICES: Record<string, number> = {
+  mostar: 240,
+  sarajevo: 260,
+  skadar: 170,
+  "tirana-city": 220,
+  "tirana-airport": 220,
+  drac: 230,
+  durres: 230,
+  himara: 360,
+  saranda: 390,
+  ksamil: 395,
+  prizren: 260,
+  pristina: 310,
+  ohrid: 320,
+  split: 350,
+  "dubrovnik-city": 160,
+  "dubrovnik-airport": 160,
+};
+
+// Premium prices from Tivat/Kotor
+const TIVAT_KOTOR_PREMIUM_PRICES: Record<string, number> = {
+  mostar: 280,
+  sarajevo: 310,
+  skadar: 200,
+  "tirana-city": 260,
+  "tirana-airport": 260,
+  drac: 280,
+  durres: 280,
+  himara: 430,
+  saranda: 460,
+  ksamil: 465,
+  prizren: 310,
+  pristina: 360,
+  ohrid: 370,
+  split: 400,
+  "dubrovnik-city": 200,
+  "dubrovnik-airport": 200,
+};
+
+// Prices from Budva (standard vehicle)
+const BUDVA_PRICES: Record<string, number> = {
+  "dubrovnik-city": 190,
+  "dubrovnik-airport": 190,
+  mostar: 240,
+  sarajevo: 260,
+  skadar: 140,
+  "tirana-city": 190,
+  "tirana-airport": 190,
+  drac: 200,
+  durres: 200,
+  himara: 340,
+  saranda: 370,
+  ksamil: 375,
+  prizren: 240,
+  pristina: 290,
+  ohrid: 300,
+  split: 350,
+};
+
+// Premium prices from Budva
+const BUDVA_PREMIUM_PRICES: Record<string, number> = {
+  "dubrovnik-city": 240,
+  "dubrovnik-airport": 240,
+  mostar: 280,
+  sarajevo: 310,
+  skadar: 180,
+  "tirana-city": 240,
+  "tirana-airport": 240,
+  drac: 250,
+  durres: 250,
+  himara: 390,
+  saranda: 420,
+  ksamil: 425,
+  prizren: 280,
+  pristina: 340,
+  ohrid: 350,
+  split: 400,
+};
+
 const PODGORICA_IDS = new Set(["podgorica", "aerodrom-podgorica"]);
+const TIVAT_KOTOR_IDS = new Set(["tivat", "kotor"]);
+const BUDVA_IDS = new Set(["budva"]);
 
 export function getRouteInfo(
   fromId: string,
-  toId: string
+  toId: string,
+  vehicleId?: string
 ): {
   available: boolean;
   basePrice: number | null;
@@ -184,45 +273,93 @@ export function getRouteInfo(
   if (fromId === toId)
     return { available: false, basePrice: null, quoteOnly: false };
 
-  // From Podgorica (city or airport) to destination
+  const isPremium = vehicleId === "premium";
+
+  // Podgorica / Airport → destination
   if (PODGORICA_IDS.has(fromId)) {
-    // Between airport and city
-    if (PODGORICA_IDS.has(toId)) {
+    if (PODGORICA_IDS.has(toId))
       return { available: true, basePrice: 25, quoteOnly: false };
-    }
     const price = PODGORICA_PRICES[toId];
     if (price !== undefined)
       return { available: true, basePrice: price, quoteOnly: false };
     return { available: true, basePrice: null, quoteOnly: true };
   }
 
-  // To Podgorica (city or airport) from destination
+  // → Podgorica / Airport
   if (PODGORICA_IDS.has(toId)) {
-    // Between airport and city
-    if (PODGORICA_IDS.has(fromId)) {
+    if (PODGORICA_IDS.has(fromId))
       return { available: true, basePrice: 25, quoteOnly: false };
-    }
     const price = PODGORICA_PRICES[fromId];
     if (price !== undefined)
       return { available: true, basePrice: price, quoteOnly: false };
     return { available: true, basePrice: null, quoteOnly: true };
   }
 
-  // Neither end is Podgorica — quote only
+  // Tivat / Kotor → destination
+  if (TIVAT_KOTOR_IDS.has(fromId)) {
+    const priceMap = isPremium
+      ? TIVAT_KOTOR_PREMIUM_PRICES
+      : TIVAT_KOTOR_PRICES;
+    const price = priceMap[toId];
+    if (price !== undefined)
+      return { available: true, basePrice: price, quoteOnly: false };
+    return { available: true, basePrice: null, quoteOnly: true };
+  }
+
+  // → Tivat / Kotor
+  if (TIVAT_KOTOR_IDS.has(toId)) {
+    const priceMap = isPremium
+      ? TIVAT_KOTOR_PREMIUM_PRICES
+      : TIVAT_KOTOR_PRICES;
+    const price = priceMap[fromId];
+    if (price !== undefined)
+      return { available: true, basePrice: price, quoteOnly: false };
+    return { available: true, basePrice: null, quoteOnly: true };
+  }
+
+  // Budva → destination
+  if (BUDVA_IDS.has(fromId)) {
+    const priceMap = isPremium ? BUDVA_PREMIUM_PRICES : BUDVA_PRICES;
+    const price = priceMap[toId];
+    if (price !== undefined)
+      return { available: true, basePrice: price, quoteOnly: false };
+    return { available: true, basePrice: null, quoteOnly: true };
+  }
+
+  // → Budva
+  if (BUDVA_IDS.has(toId)) {
+    const priceMap = isPremium ? BUDVA_PREMIUM_PRICES : BUDVA_PRICES;
+    const price = priceMap[fromId];
+    if (price !== undefined)
+      return { available: true, basePrice: price, quoteOnly: false };
+    return { available: true, basePrice: null, quoteOnly: true };
+  }
+
+  // All other routes — quote only
   return { available: true, basePrice: null, quoteOnly: true };
 }
 
 export function calculatePrice(
   basePrice: number,
   vehicleId: string,
-  roundTrip: boolean
+  roundTrip: boolean,
+  isPodgoricaRoute: boolean = false
 ): number {
   const vehicle = VEHICLES.find((v) => v.id === vehicleId);
   if (!vehicle) return basePrice;
 
   let price = basePrice;
-  if (vehicle.priceModifier === "plus20") price = basePrice + 20;
-  if (vehicle.priceModifier === "times2") price = basePrice * 2;
+  // For Podgorica routes: premium adds 20€, van doubles
+  // For other routes: premium price already factored in via getRouteInfo, van doubles standard
+  if (isPodgoricaRoute) {
+    if (vehicle.priceModifier === "plus20") price = basePrice + 20;
+    if (vehicle.priceModifier === "times2") price = basePrice * 2;
+  } else {
+    // basePrice already reflects standard or premium
+    // Van = standard price × 2, but we only have the vehicle-specific price here
+    // so just double it for van
+    if (vehicle.priceModifier === "times2") price = basePrice * 2;
+  }
   if (roundTrip) price = price * 2;
 
   return price;
