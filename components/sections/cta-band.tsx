@@ -38,7 +38,7 @@ export function CtaBand() {
               {t("bookRide")} <ArrowRight className="h-4 w-4" />
             </button>
             <a
-              href="tel:+38268861538"
+              href="https://wa.me/38268861538"
               className="inline-flex items-center gap-2 rounded-xl border border-white/20 px-7 py-3.5 text-sm font-semibold text-white transition hover:border-[#00C2E8]/50 hover:text-[#00C2E8]"
             >
               <PhoneCall className="h-4 w-4" /> {t("phone")}
