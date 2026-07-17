@@ -406,8 +406,7 @@
   },
   "popularRoutes": {
     "eyebrow": "Popularne rute",
-    "title": "Transfer cijene iz Podgorice",
-    "subtitle": "Fiksne cijene, bez skrivenih troškova. Kliknite na rutu i odmah rezervišite.",
-    "note": "Cijene važe za Škoda Superb i Passat B8. Premium vozilo +20€, Van ×2 cijene."
+    "title": "Transfer cijene",
+    "subtitle": "Fiksne cijene, bez skrivenih troškova. Kliknite na rutu i odmah rezervišite."
   }
 }
