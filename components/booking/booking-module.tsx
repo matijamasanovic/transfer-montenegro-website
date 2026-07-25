@@ -46,6 +46,11 @@ type FormState = {
   to: string;
   date: string;
   time: string;
+  // Return ride fields
+  returnDate: string;
+  returnTime: string;
+  returnFrom: string; // pickup on return (default = to)
+  returnTo: string; // dropoff on return (default = from)
   passengers: number;
   babySeat: boolean;
   name: string;
@@ -55,9 +60,16 @@ type FormState = {
   note: string;
 };
 
-const STEP_KEYS = [
+const STEPS_ONE_WAY = [
   "stepVehicle",
   "stepRoute",
+  "stepData",
+  "stepConfirm",
+] as const;
+const STEPS_RETURN = [
+  "stepVehicle",
+  "stepRoute",
+  "stepReturn",
   "stepData",
   "stepConfirm",
 ] as const;
@@ -70,7 +82,6 @@ export function BookingModule({
   variant?: "panel" | "hero";
 }) {
   const t = useTranslations("booking");
-  const STEPS = STEP_KEYS.map((k) => t(k));
 
   const [step, setStep] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -82,6 +93,10 @@ export function BookingModule({
     to: prefill?.to ?? "",
     date: "",
     time: "",
+    returnDate: "",
+    returnTime: "",
+    returnFrom: "",
+    returnTo: "",
     passengers: 1,
     babySeat: false,
     name: "",
@@ -91,29 +106,59 @@ export function BookingModule({
     note: prefill?.note ?? "",
   });
 
+  const STEPS = form.roundTrip ? STEPS_RETURN : STEPS_ONE_WAY;
+  const STEP_LABELS = STEPS.map((k) => t(k));
+
   const set = <K extends keyof FormState>(key: K, value: FormState[K]) =>
     setForm((f) => ({ ...f, [key]: value }));
 
   const locName = (id: string) =>
     LOCATIONS.find((l) => l.id === id)?.name ?? id;
   const selectedVehicle = VEHICLES.find((v) => v.id === form.vehicle);
+  const isPodgoricaRoute =
+    ["podgorica", "aerodrom-podgorica"].includes(form.from) ||
+    ["podgorica", "aerodrom-podgorica"].includes(form.to);
   const routeInfo =
     form.from && form.to
       ? getRouteInfo(form.from, form.to, form.vehicle)
       : null;
-  const isPodgoricaRoute =
-    ["podgorica", "aerodrom-podgorica"].includes(form.from) ||
-    ["podgorica", "aerodrom-podgorica"].includes(form.to);
 
-  const finalPrice =
+  const outboundPrice =
     routeInfo?.available && routeInfo.basePrice !== null && form.vehicle
       ? calculatePrice(
           routeInfo.basePrice,
           form.vehicle,
-          form.roundTrip,
+          false,
           isPodgoricaRoute
         )
       : null;
+
+  // Return route price
+  const returnFrom = form.returnFrom || form.to;
+  const returnTo = form.returnTo || form.from;
+  const isReturnPodgoricaRoute =
+    ["podgorica", "aerodrom-podgorica"].includes(returnFrom) ||
+    ["podgorica", "aerodrom-podgorica"].includes(returnTo);
+  const returnRouteInfo =
+    form.roundTrip && returnFrom && returnTo
+      ? getRouteInfo(returnFrom, returnTo, form.vehicle)
+      : null;
+  const returnPrice =
+    returnRouteInfo?.available &&
+    returnRouteInfo.basePrice !== null &&
+    form.vehicle
+      ? calculatePrice(
+          returnRouteInfo.basePrice,
+          form.vehicle,
+          false,
+          isReturnPodgoricaRoute
+        )
+      : null;
+
+  const totalPrice =
+    form.roundTrip && outboundPrice !== null && returnPrice !== null
+      ? outboundPrice + returnPrice
+      : outboundPrice;
 
   const step0Valid = !!form.vehicle;
   const step1Valid = !!(
@@ -125,16 +170,51 @@ export function BookingModule({
     form.passengers >= 1 &&
     form.passengers <= (selectedVehicle?.maxPassengers ?? 8)
   );
-  const step2Valid = !!(form.name && form.email && form.phone);
+  const step2Valid_return = !!(
+    returnFrom &&
+    returnTo &&
+    form.returnDate &&
+    form.returnTime
+  );
+  const stepDataValid = !!(form.name && form.email && form.phone);
 
-  const next = () => setStep((s) => Math.min(s + 1, STEPS.length));
+  const next = () => setStep((s) => Math.min(s + 1, STEP_LABELS.length));
   const back = () => setStep((s) => Math.max(s - 1, 0));
+
+  // Get current step key
+  const currentStepKey = STEPS[step];
+
+  // When toggling roundTrip, reset step to 0
+  const toggleRoundTrip = (val: boolean) => {
+    set("roundTrip", val);
+    // Pre-fill return fields with reverse route
+    if (val) {
+      setForm((f) => ({
+        ...f,
+        roundTrip: val,
+        returnFrom: f.to,
+        returnTo: f.from,
+      }));
+    } else {
+      set("roundTrip", val);
+    }
+    setStep(0);
+  };
 
   const handleConfirm = async () => {
     setLoading(true);
     setError("");
     try {
-      const priceText = finalPrice ? `${finalPrice} €` : "Cijena na upit";
+      const priceText = totalPrice ? `${totalPrice} €` : "Cijena na upit";
+
+      const returnInfo = form.roundTrip
+        ? `\n\nRETURN RIDE\nPickup: ${locName(returnFrom)}\nDropoff: ${locName(
+            returnTo
+          )}\nDate/Time: ${form.returnDate} at ${
+            form.returnTime
+          }\nReturn price: ${returnPrice ? returnPrice + " €" : "On request"}`
+        : "";
+
       const res = await fetch("/api/bookings", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -153,7 +233,11 @@ export function BookingModule({
           flight: form.flight || null,
           note: form.note || null,
           round_trip: form.roundTrip,
-          price: finalPrice,
+          return_date: form.roundTrip ? form.returnDate : null,
+          return_time: form.roundTrip ? form.returnTime : null,
+          return_from: form.roundTrip ? locName(returnFrom) : null,
+          return_to: form.roundTrip ? locName(returnTo) : null,
+          price: totalPrice,
           status: "new",
         }),
       });
@@ -162,23 +246,19 @@ export function BookingModule({
         return;
       }
 
-      const extras = [
-        form.babySeat ? "Baby seat" : null,
-        form.flight ? `Flight: ${form.flight}` : null,
-        form.note ? `Note: ${form.note}` : null,
-      ]
-        .filter(Boolean)
-        .join("\n");
-
-      const message = `TRANSFER REQUEST\n\nRoute: ${locName(
+      const message = `TRANSFER REQUEST\n\nROUTE: ${locName(
         form.from
       )} → ${locName(form.to)}\nVehicle: ${selectedVehicle?.name}\nType: ${
         form.roundTrip ? "Return" : "One way"
       }\nDate/Time: ${form.date} at ${form.time}\nPassengers: ${
         form.passengers
-      }\nPrice: ${priceText}\n${extras}\n\nCONTACT\nName: ${
+      }\nBaby seat: ${
+        form.babySeat ? "Yes" : "No"
+      }\nPrice: ${priceText}${returnInfo}${
+        form.flight ? `\nFlight: ${form.flight}` : ""
+      }${form.note ? `\nNote: ${form.note}` : ""}\n\nCONTACT\nName: ${
         form.name
-      }\nEmail: ${form.email}\nPhone: ${form.phone}`.trim();
+      }\nEmail: ${form.email}\nPhone: ${form.phone}`;
 
       const fd = new FormData();
       fd.append("access_key", WEB3FORMS_KEY);
@@ -212,9 +292,9 @@ export function BookingModule({
       className={cn("flex flex-col", variant === "hero" ? "p-0" : "p-6 sm:p-8")}
     >
       {/* Progress */}
-      {step < STEPS.length && (
+      {step < STEP_LABELS.length && (
         <div className="mb-6 flex items-center gap-2">
-          {STEPS.map((label, i) => (
+          {STEP_LABELS.map((label, i) => (
             <div key={label} className="flex flex-1 items-center gap-2">
               <div className="flex items-center gap-2">
                 <div
@@ -236,7 +316,7 @@ export function BookingModule({
                   {label}
                 </span>
               </div>
-              {i < STEPS.length - 1 && (
+              {i < STEP_LABELS.length - 1 && (
                 <div
                   className={cn(
                     "h-px flex-1",
@@ -251,7 +331,7 @@ export function BookingModule({
 
       <AnimatePresence mode="wait">
         {/* STEP 0 — VEHICLE */}
-        {step === 0 && (
+        {currentStepKey === "stepVehicle" && (
           <motion.div
             key="step0"
             initial={{ opacity: 0, x: 24 }}
@@ -318,7 +398,7 @@ export function BookingModule({
         )}
 
         {/* STEP 1 — ROUTE */}
-        {step === 1 && (
+        {currentStepKey === "stepRoute" && (
           <motion.div
             key="step1"
             initial={{ opacity: 0, x: 24 }}
@@ -327,11 +407,10 @@ export function BookingModule({
             transition={{ duration: 0.25 }}
             className="flex flex-col gap-4"
           >
-            {/* One way / Return */}
             <div className="grid grid-cols-2 gap-2 rounded-xl bg-white/5 p-1">
               <button
                 type="button"
-                onClick={() => set("roundTrip", false)}
+                onClick={() => toggleRoundTrip(false)}
                 className={cn(
                   "rounded-lg py-2 text-sm font-medium transition",
                   !form.roundTrip
@@ -343,7 +422,7 @@ export function BookingModule({
               </button>
               <button
                 type="button"
-                onClick={() => set("roundTrip", true)}
+                onClick={() => toggleRoundTrip(true)}
                 className={cn(
                   "rounded-lg py-2 text-sm font-medium transition",
                   form.roundTrip
@@ -355,13 +434,18 @@ export function BookingModule({
               </button>
             </div>
 
-            {/* From */}
             <Field label={t("from")} icon={<MapPin className="h-4 w-4" />}>
               <select
                 value={form.from}
                 onChange={(e) => {
                   set("from", e.target.value);
                   set("to", "");
+                  setForm((f) => ({
+                    ...f,
+                    from: e.target.value,
+                    to: "",
+                    returnTo: e.target.value,
+                  }));
                 }}
                 className="w-full bg-transparent text-sm font-medium text-white outline-none"
               >
@@ -376,11 +460,16 @@ export function BookingModule({
               </select>
             </Field>
 
-            {/* To */}
             <Field label={t("to")} icon={<MapPin className="h-4 w-4" />}>
               <select
                 value={form.to}
-                onChange={(e) => set("to", e.target.value)}
+                onChange={(e) => {
+                  setForm((f) => ({
+                    ...f,
+                    to: e.target.value,
+                    returnFrom: e.target.value,
+                  }));
+                }}
                 disabled={!form.from}
                 className="w-full bg-transparent text-sm font-medium text-white outline-none disabled:opacity-40"
               >
@@ -395,32 +484,27 @@ export function BookingModule({
               </select>
             </Field>
 
-            {/* Quote only */}
             {routeInfo?.quoteOnly && (
               <div className="flex items-center gap-2 rounded-xl border border-amber-500/20 bg-amber-500/10 px-4 py-3 text-sm text-amber-300">
-                <AlertCircle className="h-4 w-4 shrink-0" />
-                {t("quoteOnly")}
+                <AlertCircle className="h-4 w-4 shrink-0" /> {t("quoteOnly")}
               </div>
             )}
 
-            {/* Price preview */}
             {routeInfo?.available && form.vehicle && (
               <div className="rounded-xl border border-[#00C2E8]/20 bg-[#00C2E8]/5 px-4 py-3">
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-white/50">
-                    {form.roundTrip ? t("return") : t("oneWay")} ·{" "}
-                    {selectedVehicle?.name}
+                    {t("oneWay")} · {selectedVehicle?.name}
                   </span>
                   <span className="font-heading text-xl font-bold text-[#00C2E8]">
-                    {finalPrice !== null
-                      ? `${finalPrice} €`
+                    {outboundPrice !== null
+                      ? `${outboundPrice} €`
                       : t("priceOnRequest")}
                   </span>
                 </div>
               </div>
             )}
 
-            {/* Date & Time */}
             <div className="grid grid-cols-2 gap-4">
               <Field label={t("date")} icon={<Calendar className="h-4 w-4" />}>
                 <input
@@ -440,7 +524,6 @@ export function BookingModule({
               </Field>
             </div>
 
-            {/* Passengers */}
             <Field label={t("passengers")} icon={<Users className="h-4 w-4" />}>
               <div className="flex w-full items-center justify-between">
                 <span className="text-sm font-medium text-white">
@@ -477,7 +560,6 @@ export function BookingModule({
               </div>
             </Field>
 
-            {/* Baby seat */}
             <button
               type="button"
               onClick={() => set("babySeat", !form.babySeat)}
@@ -533,10 +615,114 @@ export function BookingModule({
           </motion.div>
         )}
 
-        {/* STEP 2 — DATA */}
-        {step === 2 && (
+        {/* STEP 2 — RETURN RIDE (only if roundTrip) */}
+        {currentStepKey === "stepReturn" && (
           <motion.div
-            key="step2"
+            key="stepReturn"
+            initial={{ opacity: 0, x: 24 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -24 }}
+            transition={{ duration: 0.25 }}
+            className="flex flex-col gap-4"
+          >
+            <div className="rounded-xl border border-[#00C2E8]/20 bg-[#00C2E8]/5 px-4 py-3 text-sm text-white/60">
+              {t("returnRideInfo")}
+            </div>
+
+            <Field
+              label={t("returnPickup")}
+              icon={<MapPin className="h-4 w-4" />}
+            >
+              <select
+                value={form.returnFrom || form.to}
+                onChange={(e) => set("returnFrom", e.target.value)}
+                className="w-full bg-transparent text-sm font-medium text-white outline-none"
+              >
+                {LOCATIONS.map((l) => (
+                  <option key={l.id} value={l.id} className="bg-[#0D1F4E]">
+                    {l.name}
+                  </option>
+                ))}
+              </select>
+            </Field>
+
+            <Field
+              label={t("returnDropoff")}
+              icon={<MapPin className="h-4 w-4" />}
+            >
+              <select
+                value={form.returnTo || form.from}
+                onChange={(e) => set("returnTo", e.target.value)}
+                className="w-full bg-transparent text-sm font-medium text-white outline-none"
+              >
+                {LOCATIONS.map((l) => (
+                  <option key={l.id} value={l.id} className="bg-[#0D1F4E]">
+                    {l.name}
+                  </option>
+                ))}
+              </select>
+            </Field>
+
+            {returnRouteInfo?.quoteOnly && (
+              <div className="flex items-center gap-2 rounded-xl border border-amber-500/20 bg-amber-500/10 px-4 py-3 text-sm text-amber-300">
+                <AlertCircle className="h-4 w-4 shrink-0" /> {t("quoteOnly")}
+              </div>
+            )}
+
+            {returnRouteInfo?.available && form.vehicle && (
+              <div className="rounded-xl border border-[#00C2E8]/20 bg-[#00C2E8]/5 px-4 py-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-white/50">
+                    {t("returnRide")} · {selectedVehicle?.name}
+                  </span>
+                  <span className="font-heading text-xl font-bold text-[#00C2E8]">
+                    {returnPrice !== null
+                      ? `${returnPrice} €`
+                      : t("priceOnRequest")}
+                  </span>
+                </div>
+              </div>
+            )}
+
+            <div className="grid grid-cols-2 gap-4">
+              <Field
+                label={t("returnDate")}
+                icon={<Calendar className="h-4 w-4" />}
+              >
+                <input
+                  type="date"
+                  value={form.returnDate}
+                  onChange={(e) => set("returnDate", e.target.value)}
+                  min={form.date}
+                  className="w-full bg-transparent text-sm font-medium text-white outline-none"
+                />
+              </Field>
+              <Field
+                label={t("returnTime")}
+                icon={<Clock className="h-4 w-4" />}
+              >
+                <input
+                  type="time"
+                  value={form.returnTime}
+                  onChange={(e) => set("returnTime", e.target.value)}
+                  className="w-full bg-transparent text-sm font-medium text-white outline-none"
+                />
+              </Field>
+            </div>
+
+            <BackNext
+              onBack={back}
+              onNext={next}
+              disabled={!step2Valid_return}
+              nextLabel={t("next")}
+            />
+          </motion.div>
+        )}
+
+        {/* STEP — DATA */}
+        {currentStepKey === "stepData" && (
+          <motion.div
+            key="stepData"
             initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -24 }}
@@ -597,16 +783,16 @@ export function BookingModule({
             <BackNext
               onBack={back}
               onNext={next}
-              disabled={!step2Valid}
+              disabled={!stepDataValid}
               nextLabel={t("review")}
             />
           </motion.div>
         )}
 
-        {/* STEP 3 — CONFIRM */}
-        {step === 3 && (
+        {/* STEP — CONFIRM */}
+        {currentStepKey === "stepConfirm" && (
           <motion.div
-            key="step3"
+            key="stepConfirm"
             initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -24 }}
@@ -627,13 +813,22 @@ export function BookingModule({
                   value={`${locName(form.from)} → ${locName(form.to)}`}
                 />
                 <Row
-                  label={t("typeLabel")}
-                  value={form.roundTrip ? t("return") : t("oneWay")}
-                />
-                <Row
                   label={t("dateTimeLabel")}
                   value={`${form.date} ${t("at")} ${form.time}`}
                 />
+                {form.roundTrip && (
+                  <>
+                    <div className="my-1 border-t border-white/10" />
+                    <Row
+                      label={t("returnRide")}
+                      value={`${locName(returnFrom)} → ${locName(returnTo)}`}
+                    />
+                    <Row
+                      label={t("returnDate")}
+                      value={`${form.returnDate} ${t("at")} ${form.returnTime}`}
+                    />
+                  </>
+                )}
                 <Row
                   label={t("passengersLabel")}
                   value={`${form.passengers}`}
@@ -651,8 +846,8 @@ export function BookingModule({
                     {t("priceLabel")}
                   </dt>
                   <dd className="font-heading text-xl font-bold text-[#00C2E8]">
-                    {finalPrice !== null
-                      ? `${finalPrice} €`
+                    {totalPrice !== null
+                      ? `${totalPrice} €`
                       : t("priceOnRequest")}
                   </dd>
                 </div>
@@ -688,7 +883,7 @@ export function BookingModule({
         )}
 
         {/* SUCCESS */}
-        {step === STEPS.length && (
+        {step === STEP_LABELS.length && (
           <motion.div
             key="success"
             initial={{ opacity: 0, scale: 0.9 }}

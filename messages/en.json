@@ -69,7 +69,14 @@
     "vehicleLabel": "Vehicle",
     "tooManyPassengers": "Maximum passengers for this vehicle is {max}.",
     "babySeat": "Baby seat",
-    "babySeatDesc": "Free of charge · Select if a child is travelling"
+    "babySeatDesc": "Free of charge · Select if a child is travelling",
+    "stepReturn": "Return ride",
+    "returnRide": "Return ride",
+    "returnRideInfo": "Enter the details for your return journey. The pickup location is automatically set to your outbound destination.",
+    "returnPickup": "Pickup (return)",
+    "returnDropoff": "Dropoff (return)",
+    "returnDate": "Return date",
+    "returnTime": "Return time"
   },
   "popularTours": {
     "eyebrow": "Experiences",
@@ -406,7 +413,7 @@
   },
   "popularRoutes": {
     "eyebrow": "Popular routes",
-    "title": "Transfer prices",
+    "title": "Transfer prices from Podgorica",
     "subtitle": "Fixed prices, no hidden costs. Click on a route and book instantly.",
     "note": "Prices apply for Škoda Superb and Passat B8. Premium vehicle +€20, Van ×2 price."
   }

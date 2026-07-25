@@ -69,7 +69,14 @@
     "vehicleLabel": "Vozilo",
     "tooManyPassengers": "Maksimalan broj putnika za ovo vozilo je {max}.",
     "babySeat": "Dječije sjedište",
-    "babySeatDesc": "Besplatno · Odaberite ukoliko putuje dijete"
+    "babySeatDesc": "Besplatno · Odaberite ukoliko putuje dijete",
+    "stepReturn": "Povratna vožnja",
+    "returnRide": "Povratna vožnja",
+    "returnRideInfo": "Unesite detalje povratne vožnje. Lokacija preuzimanja je automatski postavljena na odredište polaska.",
+    "returnPickup": "Preuzimanje (povratak)",
+    "returnDropoff": "Odredište (povratak)",
+    "returnDate": "Datum povratka",
+    "returnTime": "Vrijeme povratka"
   },
   "popularTours": {
     "eyebrow": "Doživljaji",
@@ -406,7 +413,8 @@
   },
   "popularRoutes": {
     "eyebrow": "Popularne rute",
-    "title": "Transfer cijene",
-    "subtitle": "Fiksne cijene, bez skrivenih troškova. Kliknite na rutu i odmah rezervišite."
+    "title": "Transfer cijene iz Podgorice",
+    "subtitle": "Fiksne cijene, bez skrivenih troškova. Kliknite na rutu i odmah rezervišite.",
+    "note": "Cijene važe za Škoda Superb i Passat B8. Premium vozilo +20€, Van ×2 cijene."
   }
 }

@@ -37,6 +37,10 @@ type Booking = {
   vehicle: string | null;
   baby_seat: boolean | null;
   round_trip: boolean | null;
+  return_date: string | null;
+  return_time: string | null;
+  return_from: string | null;
+  return_to: string | null;
   price: number | null;
   status: string;
   created_at: string;
@@ -101,15 +105,10 @@ export default function AdminDashboard() {
 
   const fetchBookings = async () => {
     setLoading(true);
-    try {
-      const res = await fetch("/api/admin/bookings");
-      const data = await res.json();
-      setBookings(Array.isArray(data) ? data : []);
-    } catch (err) {
-      console.error("Failed to fetch bookings:", err);
-    } finally {
-      setLoading(false);
-    }
+    const res = await fetch("/api/admin/bookings");
+    const data = await res.json();
+    setBookings(Array.isArray(data) ? data : []);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -377,6 +376,21 @@ export default function AdminDashboard() {
                             label="Vozilo"
                           >
                             {b.vehicle}
+                          </Detail>
+                        )}
+
+                        {b.round_trip && b.return_from && (
+                          <Detail
+                            icon={<MapPin className="h-3.5 w-3.5" />}
+                            label="Povratak"
+                          >
+                            {b.return_from} → {b.return_to}
+                            {b.return_date && (
+                              <span className="ml-1 text-gray-500">
+                                · {b.return_date}
+                                {b.return_time ? ` u ${b.return_time}` : ""}
+                              </span>
+                            )}
                           </Detail>
                         )}
 
